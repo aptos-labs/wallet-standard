@@ -1,3 +1,6 @@
+// Copyright © Aptos Foundation
+// SPDX-License-Identifier: Apache-2.0
+
 import { Wallet, WalletWithFeatures } from '@wallet-standard/core'
 
 import { MinimallyRequiredFeatures } from './features'

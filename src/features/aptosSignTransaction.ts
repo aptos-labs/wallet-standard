@@ -1,3 +1,6 @@
+// Copyright © Aptos Foundation
+// SPDX-License-Identifier: Apache-2.0
+
 import { AnyRawTransaction, AccountAuthenticator } from '@aptos-labs/ts-sdk'
 import { UserResponse } from '../misc'
 

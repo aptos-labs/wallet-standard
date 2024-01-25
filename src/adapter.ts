@@ -1,3 +1,6 @@
+// Copyright © Aptos Foundation
+// SPDX-License-Identifier: Apache-2.0
+
 import { StandardDisconnectMethod } from '@wallet-standard/core'
 import {
   AptosGetAccountMethod,

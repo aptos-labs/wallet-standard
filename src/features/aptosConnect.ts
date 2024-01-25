@@ -1,3 +1,6 @@
+// Copyright © Aptos Foundation
+// SPDX-License-Identifier: Apache-2.0
+
 import { AccountInfo, NetworkInfo, UserResponse } from '../misc'
 
 /** Version of the feature. */
