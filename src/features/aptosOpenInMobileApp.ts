@@ -11,7 +11,7 @@ export type AptosOpenInMobileAppFeature = {
   [AptosOpenInMobileAppNamespace]: {
     /** Version of the feature API. */
     version: AptosOpenInMobileAppVersion
-    go: AptosOpenInMobileAppMethod
+    openInMobileApp: AptosOpenInMobileAppMethod
   }
 }
 /** TODO: docs */
