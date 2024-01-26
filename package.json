@@ -1,8 +1,12 @@
 {
-  "name": "@nightlylabs/aptos-wallet-standard",
+  "name": "@aptos-labs/wallet-standard",
+  "description": "Aptos wallet standard",
   "version": "0.0.7",
   "license": "Apache-2.0",
-  "author": "Norbert Bodziony <norbert@nightly.app>",
+  "homepage": "https://github.com/aptos-labs/wallet-standard",
+  "bugs": {
+    "url": "https://github.com/aptos-labs/wallet-standard/issues/new/choose"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -30,7 +34,7 @@
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.2.0",
+    "@aptos-labs/ts-sdk": "^1.5.1",
     "@wallet-standard/core": "1.0.3"
   },
   "devDependencies": {
