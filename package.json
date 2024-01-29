@@ -1,7 +1,7 @@
 {
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
-  "version": "0.0.7",
+  "version": "0.0.1",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
