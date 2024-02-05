@@ -1,6 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
+import { Signature } from '@aptos-labs/ts-sdk'
 import { UserResponse } from '../misc'
 
 /** Version of the feature. */
@@ -40,6 +41,6 @@ export type AptosSignMessageOutput = {
   message: string
   nonce: string
   prefix: 'APTOS'
-  signature: string | string[]
+  signature: Signature
   bitmap?: Uint8Array
 }
