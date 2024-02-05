@@ -41,6 +41,6 @@ export type AptosSignMessageOutput = {
   message: string
   nonce: string
   prefix: 'APTOS'
-  signature: Signature
+  signature: Signature | Signature[]
   bitmap?: Uint8Array
 }

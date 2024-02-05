@@ -18,18 +18,17 @@ import { AptosChangeNetworkFeature } from './aptosChangeNetwork'
 /**
  * Wallet Standard features that are unique to Aptos, and that all Aptos wallets are expected to implement.
  */
-export type AptosFeatures = AptosSignAndSubmitTransactionFeature &
-  AptosSignTransactionFeature &
-  AptosSignMessageFeature &
-  AptosConnectFeature &
+export type AptosFeatures = AptosConnectFeature &
+  AptosChangeNetworkFeature &
+  AptosDisconnectFeature &
+  AptosGetAccountFeature &
+  AptosGetNetworkFeature &
   AptosOnAccountChangeFeature &
   AptosOnNetworkChangeFeature &
-  AptosGetNetworkFeature &
-  AptosGetAccountFeature &
-  AptosDisconnectFeature &
   AptosOpenInMobileAppFeature &
-  AptosChangeNetworkFeature
-
+  AptosSignAndSubmitTransactionFeature &
+  AptosSignMessageFeature &
+  AptosSignTransactionFeature
 /**
  * Represents a wallet with all Aptos features.
  */
