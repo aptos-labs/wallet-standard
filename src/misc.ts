@@ -13,7 +13,7 @@ export type AccountInfo = {
 /** TODO: docs */
 export interface NetworkInfo {
   name: Network // Name of the network.
-  chainId: string // Chain ID of the network.
+  chainId: number // Chain ID of the network.
   url?: string // RPC URL of the network.
 }
 
