@@ -3,7 +3,8 @@
 
 import { Wallet, WalletWithFeatures, getWallets } from '@wallet-standard/core'
 
-import { MinimallyRequiredFeatures, WalletWithAptosFeatures } from './features'
+import { MinimallyRequiredFeatures } from './features'
+import { AptosWallet } from './wallet'
 
 // These features are absolutely required for wallets to function in the Aptos ecosystem.
 // Eventually, as wallets have more consistent support of features, we may want to extend this list.
@@ -28,7 +29,7 @@ export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet
   )
 }
 
-export function getAptosWallets(): WalletWithAptosFeatures[] {
+export function getAptosWallets(): AptosWallet[] {
   const { get } = getWallets()
 
   const wallets = get()
@@ -43,5 +44,5 @@ export function getAptosWallets(): WalletWithAptosFeatures[] {
     }
   })
 
-  return aptosWallets as WalletWithAptosFeatures[]
+  return aptosWallets as AptosWallet[]
 }

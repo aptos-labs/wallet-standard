@@ -19,16 +19,18 @@ import { AptosChangeNetworkFeature } from './aptosChangeNetwork'
  * Wallet Standard features that are unique to Aptos, and that all Aptos wallets are expected to implement.
  */
 export type AptosFeatures = AptosConnectFeature &
-  AptosChangeNetworkFeature &
-  AptosDisconnectFeature &
   AptosGetAccountFeature &
   AptosGetNetworkFeature &
   AptosOnAccountChangeFeature &
   AptosOnNetworkChangeFeature &
-  AptosOpenInMobileAppFeature &
   AptosSignAndSubmitTransactionFeature &
   AptosSignMessageFeature &
-  AptosSignTransactionFeature
+  AptosSignTransactionFeature &
+  //AptosChangeNetworkFeature is optional
+  Partial<AptosChangeNetworkFeature> &
+  //AptosOpenInMobileAppFeature is optional
+  Partial<AptosOpenInMobileAppFeature> &
+  AptosDisconnectFeature
 /**
  * Represents a wallet with all Aptos features.
  */
@@ -42,10 +44,7 @@ export type WalletWithRequiredFeatures = WalletWithFeatures<
 /**
  * Represents the absolute minimum feature set required to function in the Aptos ecosystem.
  */
-export type MinimallyRequiredFeatures = Omit<
-  AptosFeatures,
-  'aptos:openInMobileApp' | 'aptos:changeNetwork'
->
+export type MinimallyRequiredFeatures = AptosFeatures
 
 export * from './aptosSignAndSubmitTransaction'
 export * from './aptosSignMessage'
