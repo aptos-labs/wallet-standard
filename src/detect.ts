@@ -1,7 +1,12 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Wallet, WalletWithFeatures, getWallets } from '@wallet-standard/core'
+import {
+  Wallet,
+  WalletWithFeatures,
+  WalletsEventsListeners,
+  getWallets
+} from '@wallet-standard/core'
 
 import { MinimallyRequiredFeatures } from './features'
 import { AptosWallet } from './wallet'
@@ -29,8 +34,18 @@ export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet
   )
 }
 
-export function getAptosWallets(): AptosWallet[] {
-  const { get } = getWallets()
+/**
+ * Helper function to get only Aptos wallets
+ * @returns Aptos compatible wallets and `on` event to listen to wallets register event
+ */
+export function getAptosWallets(): {
+  aptosWallets: AptosWallet[]
+  on: <E extends keyof WalletsEventsListeners>(
+    event: E,
+    listener: WalletsEventsListeners[E]
+  ) => () => void
+} {
+  const { get, on } = getWallets()
 
   const wallets = get()
 
@@ -44,5 +59,5 @@ export function getAptosWallets(): AptosWallet[] {
     }
   })
 
-  return aptosWallets as AptosWallet[]
+  return { aptosWallets: aptosWallets as AptosWallet[], on }
 }
