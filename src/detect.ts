@@ -20,7 +20,6 @@ const REQUIRED_FEATURES: (keyof MinimallyRequiredFeatures)[] = [
   'aptos:network',
   'aptos:onAccountChange',
   'aptos:onNetworkChange',
-  'aptos:signAndSubmitTransaction',
   'aptos:signMessage',
   'aptos:signTransaction'
 ]

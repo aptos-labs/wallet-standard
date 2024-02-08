@@ -23,13 +23,14 @@ export type AptosFeatures = AptosConnectFeature &
   AptosGetNetworkFeature &
   AptosOnAccountChangeFeature &
   AptosOnNetworkChangeFeature &
-  AptosSignAndSubmitTransactionFeature &
   AptosSignMessageFeature &
   AptosSignTransactionFeature &
   //AptosChangeNetworkFeature is optional
   Partial<AptosChangeNetworkFeature> &
   //AptosOpenInMobileAppFeature is optional
   Partial<AptosOpenInMobileAppFeature> &
+  //AptosSignAndSubmitTransactionFeature is optional
+  Partial<AptosSignAndSubmitTransactionFeature> &
   AptosDisconnectFeature
 /**
  * Represents a wallet with all Aptos features.
