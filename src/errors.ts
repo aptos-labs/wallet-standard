@@ -5,18 +5,18 @@ export enum AptosWalletErrorCode {
 
 export const AptosWalletErrors = Object.freeze({
   [AptosWalletErrorCode.Unauthorized]: {
-    title: 'Unauthorized',
+    status: 'Unauthorized',
     message: 'The requested method and/or account has not been authorized by the user.'
   },
   [AptosWalletErrorCode.InternalError]: {
-    title: 'Internal error',
+    status: 'Internal error',
     message: 'Something went wrong within the wallet.'
   }
 })
 
 export class AptosWalletError extends Error {
   readonly code: number
-  readonly title: string
+  readonly status: string
 
   constructor(code: number, message?: string) {
     super(
@@ -25,7 +25,8 @@ export class AptosWalletError extends Error {
         'Unknown error occurred'
     )
     this.code = code
-    this.title = AptosWalletErrors[code as keyof typeof AptosWalletErrors]?.title ?? 'Unknown error'
+    this.status =
+      AptosWalletErrors[code as keyof typeof AptosWalletErrors]?.status ?? 'Unknown error'
     this.name = 'AptosWalletError'
     Object.setPrototypeOf(this, AptosWalletError.prototype)
   }
