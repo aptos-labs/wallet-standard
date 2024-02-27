@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@aptos-labs/ts-sdk':
-    specifier: ^1.8.0
-    version: 1.8.0
+    specifier: ^1.9.0
+    version: 1.9.0
   '@wallet-standard/core':
     specifier: 1.0.3
     version: 1.0.3
@@ -35,8 +35,8 @@ packages:
       - debug
     dev: false
 
-  /@aptos-labs/ts-sdk@1.8.0:
-    resolution: {integrity: sha512-GpryPtpRr8ias4SKksP13/O/KgbEi+ylvu9dg6aC23VgRhezqdPteQSAAxNSg8puM4qS2xiaBKSyTV3a80SdSg==}
+  /@aptos-labs/ts-sdk@1.9.0:
+    resolution: {integrity: sha512-mEiKf8Mx/ap/1efUxmZElbEcl81xnPXGeMSpmcW19JOzcqGH0CabiQ0lyyaAJP2lAKylXLslzwT3FbVm9DEEIQ==}
     engines: {node: '>=11.0.0'}
     dependencies:
       '@aptos-labs/aptos-client': 0.1.0
