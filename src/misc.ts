@@ -1,13 +1,14 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Account, Network } from '@aptos-labs/ts-sdk'
+import { AccountAddress, PublicKey, Network } from '@aptos-labs/ts-sdk'
 
 /** TODO: docs */
 export type TransactionHash = `0x${string}`
 /** TODO: docs */
 export type AccountInfo = {
-  account: Account
+  address: AccountAddress
+  publicKey: PublicKey
   ansName?: string
 }
 /** TODO: docs */
