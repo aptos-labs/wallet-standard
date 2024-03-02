@@ -4,7 +4,6 @@
 export * from '@wallet-standard/core'
 
 export * from './account'
-export * from './adapter'
 export * from './chains'
 export * from './detect'
 export * from './errors'
