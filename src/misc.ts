@@ -5,12 +5,7 @@ import { AccountAddress, PublicKey, Network } from '@aptos-labs/ts-sdk'
 
 /** TODO: docs */
 export type TransactionHash = `0x${string}`
-/** TODO: docs */
-export type AccountInfo = {
-  address: AccountAddress
-  publicKey: PublicKey
-  ansName?: string
-}
+
 /** TODO: docs */
 export interface NetworkInfo {
   name: Network // Name of the network.
