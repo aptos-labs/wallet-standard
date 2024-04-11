@@ -7,7 +7,7 @@ import { NetworkInfo } from '../misc'
 export type AptosOnNetworkChangeVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosOnNetworkChangeNamespace = 'aptos:onNetworkChange'
-/** TODO: docs */
+
 export type AptosOnNetworkChangeFeature = {
   /** Namespace for the feature. */
   [AptosOnNetworkChangeNamespace]: {
@@ -16,7 +16,7 @@ export type AptosOnNetworkChangeFeature = {
     onNetworkChange: AptosOnNetworkChangeMethod
   }
 }
-/** TODO: docs */
+
 export type AptosOnNetworkChangeMethod = (input: AptosOnNetworkChangeInput) => Promise<void>
-/** TODO: docs */
+
 export type AptosOnNetworkChangeInput = (newNetwork: NetworkInfo) => void

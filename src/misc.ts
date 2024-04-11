@@ -1,12 +1,10 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { AccountAddress, PublicKey, Network } from '@aptos-labs/ts-sdk'
+import { Network } from '@aptos-labs/ts-sdk'
 
-/** TODO: docs */
 export type TransactionHash = `0x${string}`
 
-/** TODO: docs */
 export interface NetworkInfo {
   name: Network // Name of the network.
   chainId: number // Chain ID of the network.
