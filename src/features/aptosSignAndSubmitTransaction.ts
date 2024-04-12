@@ -19,12 +19,11 @@ export type AptosSignAndSubmitTransactionFeature = {
     signAndSubmitTransaction: AptosSignAndSubmitTransactionMethod
   }
 }
-/** TODO: docs */
+
 export type AptosSignAndSubmitTransactionMethod = (
   transaction: AptosSignAndSubmitTransactionInput
 ) => Promise<UserResponse<AptosSignAndSubmitTransactionOutput>>
 
-/** TODO: docs */
 export type AptosSignAndSubmitTransactionInput = AnyRawTransaction
 /** Output of signing transactions. */
 export type AptosSignAndSubmitTransactionOutput = PendingTransactionResponse

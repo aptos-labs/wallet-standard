@@ -7,7 +7,7 @@ import { NetworkInfo, UserResponse } from '../misc'
 export type AptosChangeNetworkVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosChangeNetworkNamespace = 'aptos:changeNetwork'
-/** TODO: docs */
+
 export type AptosChangeNetworkFeature = {
   /** Namespace for the feature. */
   [AptosChangeNetworkNamespace]: {
@@ -17,14 +17,12 @@ export type AptosChangeNetworkFeature = {
   }
 }
 
-/** TODO: docs */
 export type AptosChangeNetworkMethod = (
   input: AptosChangeNetworkInput
 ) => Promise<UserResponse<AptosChangeNetworkOutput>>
-/** TODO: docs */
+
 export type AptosChangeNetworkInput = NetworkInfo
 
-/** TODO: docs */
 export interface AptosChangeNetworkOutput {
   success: boolean
   reason?: string

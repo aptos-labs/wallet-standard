@@ -7,7 +7,7 @@ import { NetworkInfo } from '../misc'
 export type AptosGetNetworkVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosGetNetworkNamespace = 'aptos:network'
-/** TODO: docs */
+
 export type AptosGetNetworkFeature = {
   /** Namespace for the feature. */
   [AptosGetNetworkNamespace]: {
@@ -16,7 +16,7 @@ export type AptosGetNetworkFeature = {
     network: AptosGetNetworkMethod
   }
 }
-/** TODO: docs */
+
 export type AptosGetNetworkMethod = () => Promise<AptosGetNetworkOutput>
-/** TODO: docs */
+
 export type AptosGetNetworkOutput = NetworkInfo

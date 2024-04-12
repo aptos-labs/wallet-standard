@@ -5,7 +5,7 @@
 export type AptosOpenInMobileAppVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosOpenInMobileAppNamespace = 'aptos:openInMobileApp'
-/** TODO: docs */
+
 export type AptosOpenInMobileAppFeature = {
   /** Namespace for the feature. */
   [AptosOpenInMobileAppNamespace]: {
@@ -14,5 +14,5 @@ export type AptosOpenInMobileAppFeature = {
     openInMobileApp: AptosOpenInMobileAppMethod
   }
 }
-/** TODO: docs */
+
 export type AptosOpenInMobileAppMethod = () => void

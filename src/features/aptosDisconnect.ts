@@ -5,7 +5,7 @@
 export type AptosDisconnectVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosDisconnectNamespace = 'aptos:disconnect'
-/** TODO: docs */
+
 export type AptosDisconnectFeature = {
   /** Namespace for the feature. */
   [AptosDisconnectNamespace]: {
@@ -14,5 +14,5 @@ export type AptosDisconnectFeature = {
     disconnect: AptosDisconnectMethod
   }
 }
-/** TODO: docs */
+
 export type AptosDisconnectMethod = () => Promise<void>

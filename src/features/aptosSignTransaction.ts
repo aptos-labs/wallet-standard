@@ -20,7 +20,7 @@ export type AptosSignTransactionFeature = {
     signTransaction: AptosSignTransactionMethod
   }
 }
-/** TODO: docs */
+
 export type AptosSignTransactionMethod = (
   transaction: AnyRawTransaction,
   asFeePayer?: boolean

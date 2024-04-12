@@ -9,7 +9,6 @@ export type AptosSignMessageVersion = '1.0.0'
 /** Name of the feature. */
 export const AptosSignMessageNamespace = 'aptos:signMessage'
 
-/** TODO: docs */
 export type AptosSignMessageFeature = {
   /** Namespace for the feature. */
   [AptosSignMessageNamespace]: {
@@ -18,12 +17,11 @@ export type AptosSignMessageFeature = {
     signMessage: AptosSignMessageMethod
   }
 }
-/** TODO: docs */
+
 export type AptosSignMessageMethod = (
   input: AptosSignMessageInput
 ) => Promise<UserResponse<AptosSignMessageOutput>>
 
-/** TODO: docs */
 export type AptosSignMessageInput = {
   address?: boolean
   application?: boolean
@@ -32,7 +30,6 @@ export type AptosSignMessageInput = {
   nonce: string
 }
 
-/** TODO: docs */
 export type AptosSignMessageOutput = {
   address?: string
   application?: string
