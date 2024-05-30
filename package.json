@@ -40,9 +40,9 @@
     "prettier:check": "prettier -c --ignore-unknown .",
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
-  "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.9.1",
-    "@wallet-standard/core": "1.0.3"
+  "peerDependencies": {
+    "@aptos-labs/ts-sdk": "^1.16.0",
+    "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
     "prettier": "^2.5.1",
