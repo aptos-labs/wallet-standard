@@ -1,7 +1,7 @@
 {
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
@@ -41,7 +41,7 @@
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^1.16.0",
+    "@aptos-labs/ts-sdk": "^1.17.0",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
