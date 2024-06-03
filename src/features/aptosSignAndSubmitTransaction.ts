@@ -1,14 +1,9 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  AccountAddressInput,
-  AnyRawTransaction,
-  InputGenerateTransactionOptions,
-  InputGenerateTransactionPayloadData,
-  PendingTransactionResponse
-} from '@aptos-labs/ts-sdk'
+import { InputGenerateTransactionPayloadData } from '@aptos-labs/ts-sdk'
 import { UserResponse } from '../misc'
+
 /** Version of the feature. */
 export type AptosSignAndSubmitTransactionVersion = '1.1.0'
 /** Name of the feature. */
@@ -30,12 +25,12 @@ export type AptosSignAndSubmitTransactionMethod = (
   transaction: AptosSignAndSubmitTransactionInput
 ) => Promise<UserResponse<AptosSignAndSubmitTransactionOutput>>
 
-export type InputTransactionData = {
-  sender?: AccountAddressInput
-  data: InputGenerateTransactionPayloadData
-  options?: InputGenerateTransactionOptions
+export interface AptosSignAndSubmitTransactionInput {
+  gasUnitPrice?: number;  // defaults to estimated gas unit price
+  maxGasAmount?: number;  // defaults to estimated max gas amount
+  payload: InputGenerateTransactionPayloadData;
 }
 
-export type AptosSignAndSubmitTransactionInput = InputTransactionData | AnyRawTransaction
-/** Output of signing transactions. */
-export type AptosSignAndSubmitTransactionOutput = PendingTransactionResponse
+export interface AptosSignAndSubmitTransactionOutput {
+  hash: string;
+}
