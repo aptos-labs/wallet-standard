@@ -423,7 +423,7 @@ export class MyWallet implements AptosWallet {
 /**
  * REVISION - This section is ONLY for Browser Extension Wallets.
  * 
- * Ensure that you import ant call registerWallet on pageload in your Wallet's logic.
+ * Ensure that you import and call registerWallet on pageload in your Wallet's logic.
  * This will enable any dapps that are using the AIP-62 Wallet Adapter package to detect
  * your wallet and connect to it.
  * 
