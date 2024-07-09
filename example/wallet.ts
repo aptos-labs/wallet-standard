@@ -309,6 +309,7 @@ export class MyWallet implements AptosWallet {
     return {
       // REVISION - Ensure the name and url match the chain_id your wallet responds with.
       name: Network.DEVNET,
+      // REVISION - For mainnet and testnet is not recommended to make the getLedgerInfo() network call as the chain_id is fixed for those networks.
       chainId: network.chain_id,
       url: "https://fullnode.devnet.aptoslabs.com/v1",
     };
