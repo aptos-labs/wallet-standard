@@ -23,11 +23,10 @@ import {
   IdentifierArray,
   NetworkInfo,
   UserResponse,
-  registerWallet,
-  AptosWalletAccount,
   AptosOnNetworkChangeMethod,
   AptosFeatures,
-  UserResponseStatus
+  UserResponseStatus,
+  AptosWalletMultiSigAccount
 } from '../'
 
 /**
@@ -39,13 +38,10 @@ import {
  *
  * Function implementations are for DEMONSTRATION PURPOSES ONLY. Please ensure you rewrite all features
  * to use your Wallet as the method of communicating on-chain.
- *
- * For a working implementation of this example, see the next-js example app here: https://github.com/aptos-labs/aptos-wallet-adapter/tree/main/apps/nextjs-example
- * (And more specifically, see https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/apps/nextjs-example/src/utils/standardWallet.ts)
  */
 
 /**
- * Interface of a **WalletAccount**, also referred to as an **Account**.
+ * Interface of a **AptosWalletMultiSigAccount**, also referred to as an **Account**.
  *
  * An account is a _read-only data object_ that is provided from the Wallet to the app, authorizing the app to use it.
  *
@@ -57,12 +53,9 @@ import {
  *
  */
 // REVISION - Replace the "MyWallet" in "MyWalletAccount" with the name of your wallet. Ex. "PetraAccount"
-export class MyWalletAccount implements AptosWalletAccount {
+export class MyWalletAccount implements AptosWalletMultiSigAccount {
   /** Address of the account, corresponding with a public key. */
   address: string
-
-  /** Public key of the account, corresponding with a secret key to use. */
-  publicKey: Uint8Array
 
   /**
    * Chains supported by the account.
@@ -81,6 +74,9 @@ export class MyWalletAccount implements AptosWalletAccount {
   /** The signing scheme used for the private key of the address. Ex. SigningScheme.Ed25519 */
   signingScheme: SigningScheme
 
+  /** A required boolean flag indicating this is a multisig account */
+  isMultiSigAccount: true = true
+
   /** Optional user-friendly descriptive label or name for the account. This may be displayed by the app. */
   label?: string
 
@@ -97,7 +93,6 @@ export class MyWalletAccount implements AptosWalletAccount {
   // REVISION - Update this constructor to use values your wallet supports.
   constructor(account: Account) {
     this.address = account.accountAddress.toString()
-    this.publicKey = account.publicKey.toUint8Array()
     // REVISION - Choose which chains your wallet supports. This may only be subset of all Aptos networks.
     this.chains = APTOS_CHAINS // ["aptos:devnet", "aptos:testnet", "aptos:localnet", "aptos:mainnet"]
     /**
@@ -418,20 +413,3 @@ export class MyWallet implements AptosWallet {
     return Promise.resolve()
   }
 }
-
-/**
- * REVISION - This section is ONLY for Browser Extension Wallets.
- *
- * Ensure that you import and call registerWallet on pageload in your Wallet's logic.
- * This will enable any dapps that are using the AIP-62 Wallet Adapter package to detect
- * your wallet and connect to it.
- *
- * The below registration is for example purposes only, and likely should not occur in the
- * same file as your "MyWallet" implementation in practice since registerWallet must be called
- * when the page is loaded.
- */
-;(function () {
-  if (typeof window === 'undefined') return
-  const myWallet = new MyWallet()
-  registerWallet(myWallet)
-})()
