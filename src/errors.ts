@@ -1,5 +1,6 @@
 export enum AptosWalletErrorCode {
   Unauthorized = 4100,
+  Unsupported = 4200,
   InternalError = -30001
 }
 
@@ -11,6 +12,10 @@ export const AptosWalletErrors = Object.freeze({
   [AptosWalletErrorCode.InternalError]: {
     status: 'Internal error',
     message: 'Something went wrong within the wallet.'
+  },
+  [AptosWalletErrorCode.Unsupported]: {
+    status: 'Unsupported',
+    message: 'The requested feature is not supported.'
   }
 })
 
