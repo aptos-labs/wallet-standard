@@ -1,7 +1,7 @@
 {
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
@@ -32,8 +32,8 @@
   "scripts": {
     "clean": "rm -rf tsconfig.tsbuildinfo ./dist",
     "dev": "pnpm build --watch",
-    "build": "pnpm build:claer && tsup",
-    "build:claer": "rm -rf ./dist",
+    "build": "pnpm build:clear && tsup",
+    "build:clear": "rm -rf ./dist",
     "build:tsup": "tsup ./src/index.ts --format esm,cjs --sourcemap",
     "build:types": "tsc --build",
     "prepublishOnly": "pnpm build",
