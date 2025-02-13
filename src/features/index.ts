@@ -14,6 +14,7 @@ import { AptosSignTransactionFeature } from './aptosSignTransaction'
 import { AptosDisconnectFeature } from './aptosDisconnect'
 import { AptosOpenInMobileAppFeature } from './aptosOpenInMobileApp'
 import { AptosChangeNetworkFeature } from './aptosChangeNetwork'
+import { AptosSignInFeature } from './aptosSignIn'
 
 /**
  * Wallet Standard features that are unique to Aptos, and that all Aptos wallets are expected to implement.
@@ -31,6 +32,8 @@ export type AptosFeatures = AptosConnectFeature &
   Partial<AptosOpenInMobileAppFeature> &
   //AptosSignAndSubmitTransactionFeature is optional
   Partial<AptosSignAndSubmitTransactionFeature> &
+  //AptosSignInFeature is optional
+  Partial<AptosSignInFeature> &
   AptosDisconnectFeature
 /**
  * Represents a wallet with all Aptos features.
@@ -58,3 +61,4 @@ export * from './aptosChangeNetwork'
 export * from './aptosDisconnect'
 export * from './aptosSignTransaction'
 export * from './aptosOpenInMobileApp'
+export * from './aptosSignIn'
