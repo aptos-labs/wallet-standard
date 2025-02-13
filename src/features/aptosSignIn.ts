@@ -5,8 +5,14 @@ import { Signature } from '@aptos-labs/ts-sdk'
 import { UserResponse } from '../misc'
 import { AccountInfo } from '../AccountInfo'
 
+/**
+ * NOTE: This feature is currently experimental and is subject to change.
+ *
+ * Documentation: [Sign in with Aptos](https://github.com/aptos-foundation/AIPs/pull/556)
+ */
+
 /** Version of the feature. */
-export type AptosSignInVersion = '1.0.0'
+export type AptosSignInVersion = '0.1.0'
 /** Name of the feature. */
 export const AptosSignInNamespace = 'aptos:signIn'
 
@@ -51,5 +57,10 @@ export type AptosSignInOutput = {
   plainText: string
   signingMessage: Uint8Array
   signature: Signature
-  type: string // 'ed25519' | 'multi_ed25519' | 'single_key' | 'multi_key'
+  /**
+   * The type of signing scheme used to sign the message.
+   *
+   * @example 'ed25519' | 'multi_ed25519' | 'single_key' | 'multi_key'
+   */
+  type: string
 }
