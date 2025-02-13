@@ -4,24 +4,32 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@aptos-labs/ts-sdk':
-    specifier: ^1.17.0
-    version: 1.17.0
-  '@wallet-standard/core':
-    specifier: ^1.0.3
-    version: 1.0.3
+importers:
 
-devDependencies:
-  prettier:
-    specifier: ^2.5.1
-    version: 2.5.1
-  tsup:
-    specifier: ^7.1.0
-    version: 7.1.0(typescript@5.1.6)
-  typescript:
-    specifier: ^5.1.6
-    version: 5.1.6
+  .:
+    dependencies:
+      '@aptos-labs/ts-sdk':
+        specifier: ^1.17.0
+        version: 1.17.0
+      '@wallet-standard/core':
+        specifier: ^1.0.3
+        version: 1.0.3
+    devDependencies:
+      prettier:
+        specifier: ^2.5.1
+        version: 2.5.1
+      tsup:
+        specifier: ^7.1.0
+        version: 7.1.0(typescript@5.1.6)
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  example/basic:
+    dependencies:
+      '@aptos-labs/wallet-standard':
+        specifier: workspace:*
+        version: link:../..
 
 packages:
 
