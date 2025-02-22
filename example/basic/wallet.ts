@@ -27,8 +27,19 @@ import {
   AptosWalletAccount,
   AptosOnNetworkChangeMethod,
   AptosFeatures,
-  UserResponseStatus
+  UserResponseStatus,
+  AptosSignInInput,
+  AptosSignInOutput,
+  AptosSignInMethod,
+  AptosSignInRequiredFields
 } from '@aptos-labs/wallet-standard'
+import {
+  createSignInMessageText,
+  generateSignInSigningMessage,
+  getSignInPublicKeyScheme,
+  verifySignIn,
+  verifySignInMessage
+} from '@aptos-labs/siwa'
 
 /**
  * This class is a template you can modify to implement an AIP-62 Wallet.
@@ -187,6 +198,10 @@ export class MyWallet implements AptosWallet {
         version: '1.0.0',
         connect: this.connect
       },
+      'aptos:signIn': {
+        version: '0.1.0',
+        signIn: this.signIn
+      },
       'aptos:network': {
         version: '1.0.0',
         network: this.network
@@ -290,6 +305,73 @@ export class MyWallet implements AptosWallet {
       return {
         status: UserResponseStatus.REJECTED
       }
+    }
+  }
+
+  /**
+   * REVISION - Implement this function using your Wallet.
+   *
+   * Sign into an account using this Wallet.
+   * This must wait for the user to sign in to the Wallet provider and confirm they are ok sharing
+   * details with the dapp.
+   *
+   * For demonstration purposes, this template example assumes the user is using the account generated in `signer`
+   * and assumes the user approved letting the dapp use the account information.
+   *
+   * Your implmentation should include a way to track which account was just connected. This likely will involve
+   * setting the `this.accounts` variable.
+   *
+   * @returns Whether the user approved signing into their account, and account info.
+   * @throws Error when unable to connect to the Wallet provider.
+   */
+  signIn: AptosSignInMethod = async (
+    input: AptosSignInInput
+  ): Promise<UserResponse<AptosSignInOutput>> => {
+    // THIS LOGIC SHOULD BE REPLACED. IT IS FOR EXAMPLE PURPOSES ONLY.
+    try {
+      const boundFields: AptosSignInRequiredFields = {
+        address: this.signer.accountAddress.toString(),
+        domain: 'aptoslabs.com',
+        uri: 'https://aptoslabs.com',
+        chainId: (await this.aptos.getChainId()).toString(),
+        version: '1.0.0'
+      }
+
+      const mergedFields: AptosSignInRequiredFields & AptosSignInInput = {
+        ...boundFields,
+        ...input
+      }
+
+      const verification = verifySignInMessage(
+        mergedFields,
+        // Bound fields must be overriden as they are the EXPECTED values
+        createSignInMessageText({ ...input, ...boundFields })
+      )
+
+      if (!verification.valid) return { status: UserResponseStatus.REJECTED }
+
+      const plainText = createSignInMessageText(mergedFields)
+
+      const signingMessage = generateSignInSigningMessage(plainText)
+
+      const signature = this.signer.sign(signingMessage)
+
+      return {
+        status: UserResponseStatus.APPROVED,
+        args: {
+          account: new AccountInfo({
+            address: this.signer.accountAddress.toString(),
+            publicKey: this.signer.publicKey
+          }),
+          input: mergedFields,
+          plainText,
+          signingMessage,
+          signature,
+          type: getSignInPublicKeyScheme(this.signer.signingScheme)
+        }
+      }
+    } catch (error) {
+      return { status: UserResponseStatus.REJECTED }
     }
   }
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@aptos-labs/siwa": "^0.2.3",
     "@aptos-labs/wallet-standard": "workspace:*"
   }
 }
