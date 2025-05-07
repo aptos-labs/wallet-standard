@@ -41,7 +41,7 @@
     "prettier:fix": "prettier -w --ignore-unknown ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^1.37.1",
+    "@aptos-labs/ts-sdk": "^2.0.0",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
