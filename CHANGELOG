@@ -4,6 +4,10 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
+# 0.5.0 (2025-05-26)
+
+- [breaking] Update `signIn` interfaces to match the interface requirements in [AIP-116](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-116.md). Renamed `AptosSignInRequiredFields` to `AptosSignInBoundFields`.
+
 # 0.4.0 (2025-05-07)
 
 - Bump aptos ts-sdk version to 2.0.0
