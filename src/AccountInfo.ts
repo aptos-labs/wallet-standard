@@ -1,11 +1,15 @@
 import {
-  AccountAddress, AccountAddressInput, AnyPublicKey,
+  AccountAddress,
+  AccountAddressInput,
+  AnyPublicKey,
   Deserializer,
   Ed25519PublicKey,
-  MultiEd25519PublicKey, MultiKey,
+  MultiEd25519PublicKey,
+  MultiKey,
   PublicKey,
   Serializable,
-  Serializer, SigningScheme
+  Serializer,
+  SigningScheme
 } from '@aptos-labs/ts-sdk'
 
 export interface AccountInfoInput {

@@ -19,14 +19,14 @@ export const AptosSignTransactionNamespace = 'aptos:signTransaction'
 
 export type AptosSignTransactionFeatureV1_0 = {
   [AptosSignTransactionNamespace]: {
-    version: '1.0.0',
+    version: '1.0.0'
     signTransaction: AptosSignTransactionMethod
   }
 }
 
 export type AptosSignTransactionFeatureV1_1 = {
   [AptosSignTransactionNamespace]: {
-    version: '1.1'
+    version: '1.1.0'
     signTransaction: AptosSignTransactionMethod & AptosSignTransactionMethodV1_1
   }
 }
@@ -36,13 +36,14 @@ export type AptosSignTransactionFeatureV1_1 = {
  * account authenticator.
  */
 export type AptosSignTransactionFeature =
-  AptosSignTransactionFeatureV1_0 | AptosSignTransactionFeatureV1_1;
+  | AptosSignTransactionFeatureV1_0
+  | AptosSignTransactionFeatureV1_1
 
 // endregion
 
 // region V1.0
 
-export type AptosSignTransactionOutput = AccountAuthenticator;
+export type AptosSignTransactionOutput = AccountAuthenticator
 
 export type AptosSignTransactionMethod = (
   transaction: AnyRawTransaction,
@@ -54,29 +55,29 @@ export type AptosSignTransactionMethod = (
 // region V1.1
 
 export interface AccountInput {
-  address: AccountAddress;
-  publicKey?: PublicKey;
+  address: AccountAddress
+  publicKey?: PublicKey
 }
 
 export interface AptosSignTransactionInputV1_1 {
-  expirationSecondsFromNow?: number; // defaults to 30 seconds (depends on wallet)
-  expirationTimestamp?: number;
-  feePayer?: AccountInput; // defaults to no fee payer
-  gasUnitPrice?: number; // defaults to estimated gas unit price
-  maxGasAmount?: number; // defaults to simulation result with fuzz factor
-  network?: Network; // defaults to active network
-  payload: TransactionPayload | InputGenerateTransactionPayloadData;
-  secondarySigners?: AccountInput[]; // defaults to no secondary signers
-  sender?: AccountInput; // defaulting to active account (if applicable)
-  sequenceNumber?: number | bigint; // defaulting to sender's sequence number
-  signerAddress?: AccountAddress;
+  expirationSecondsFromNow?: number // defaults to 30 seconds (depends on wallet)
+  expirationTimestamp?: number
+  feePayer?: AccountInput // defaults to no fee payer
+  gasUnitPrice?: number // defaults to estimated gas unit price
+  maxGasAmount?: number // defaults to simulation result with fuzz factor
+  network?: Network // defaults to active network
+  payload: TransactionPayload | InputGenerateTransactionPayloadData
+  secondarySigners?: AccountInput[] // defaults to no secondary signers
+  sender?: AccountInput // defaulting to active account (if applicable)
+  sequenceNumber?: number | bigint // defaulting to sender's sequence number
+  signerAddress?: AccountAddress
 }
 
 export interface AptosSignTransactionOutputV1_1 {
-  authenticator: AccountAuthenticator;
-  rawTransaction: AnyRawTransaction;
+  authenticator: AccountAuthenticator
+  rawTransaction: AnyRawTransaction
 }
 
 export type AptosSignTransactionMethodV1_1 = (
   input: AptosSignTransactionInputV1_1
-) => Promise<UserResponse<AptosSignTransactionOutputV1_1>>;
+) => Promise<UserResponse<AptosSignTransactionOutputV1_1>>

@@ -26,11 +26,11 @@ export type AptosSignAndSubmitTransactionMethod = (
 ) => Promise<UserResponse<AptosSignAndSubmitTransactionOutput>>
 
 export interface AptosSignAndSubmitTransactionInput {
-  gasUnitPrice?: number;  // defaults to estimated gas unit price
-  maxGasAmount?: number;  // defaults to estimated max gas amount
-  payload: InputGenerateTransactionPayloadData;
+  gasUnitPrice?: number // defaults to estimated gas unit price
+  maxGasAmount?: number // defaults to estimated max gas amount
+  payload: InputGenerateTransactionPayloadData
 }
 
 export interface AptosSignAndSubmitTransactionOutput {
-  hash: string;
+  hash: string
 }
