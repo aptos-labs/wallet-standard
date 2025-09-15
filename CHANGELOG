@@ -4,6 +4,9 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
+# 0.5.1 (2025-09-15)
+
+- Support ts-sdk version 5.x.x in addition to 4.x.x
 - Support ts-sdk version 4.x.x in addition to 3.x.x
 
 # 0.5.0 (2025-05-26)
