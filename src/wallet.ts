@@ -1,7 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { WalletWithAptosFeatures } from './features'
+import type { WalletWithAptosFeatures } from './features'
 
 export interface AptosWallet extends WalletWithAptosFeatures {
   /**

@@ -1,9 +1,9 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Signature } from '@aptos-labs/ts-sdk'
-import { UserResponse } from '../misc'
-import { AccountInfo } from '../AccountInfo'
+import type { Signature } from '@aptos-labs/ts-sdk'
+import type { AccountInfo } from '../AccountInfo'
+import type { UserResponse } from '../misc'
 
 /**
  * AIP: [Sign in with Aptos](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-116.md)

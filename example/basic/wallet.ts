@@ -1,32 +1,32 @@
 import {
   Account,
-  AccountAuthenticator,
-  AnyRawTransaction,
+  type AccountAuthenticator,
+  type AnyRawTransaction,
   Aptos,
   AptosConfig,
   Network,
-  SigningScheme
+  type SigningScheme
 } from '@aptos-labs/ts-sdk'
 import {
-  APTOS_CHAINS,
   AccountInfo,
-  AptosConnectMethod,
-  AptosDisconnectMethod,
-  AptosGetAccountMethod,
-  AptosGetNetworkMethod,
-  AptosOnAccountChangeMethod,
-  AptosSignMessageInput,
-  AptosSignMessageMethod,
-  AptosSignMessageOutput,
-  AptosSignTransactionMethod,
-  AptosWallet,
-  IdentifierArray,
-  NetworkInfo,
-  UserResponse,
+  APTOS_CHAINS,
+  type AptosConnectMethod,
+  type AptosDisconnectMethod,
+  type AptosFeatures,
+  type AptosGetAccountMethod,
+  type AptosGetNetworkMethod,
+  type AptosOnAccountChangeMethod,
+  type AptosOnNetworkChangeMethod,
+  type AptosSignMessageInput,
+  type AptosSignMessageMethod,
+  type AptosSignMessageOutput,
+  type AptosSignTransactionMethod,
+  type AptosWallet,
+  type AptosWalletAccount,
+  type IdentifierArray,
+  type NetworkInfo,
   registerWallet,
-  AptosWalletAccount,
-  AptosOnNetworkChangeMethod,
-  AptosFeatures,
+  type UserResponse,
   UserResponseStatus
 } from '@aptos-labs/wallet-standard'
 
@@ -286,7 +286,7 @@ export class MyWallet implements AptosWallet {
         status: UserResponseStatus.APPROVED,
         args: account
       }
-    } catch (e) {
+    } catch (_e) {
       return {
         status: UserResponseStatus.REJECTED
       }
@@ -418,7 +418,6 @@ export class MyWallet implements AptosWallet {
     return Promise.resolve()
   }
 }
-
 /**
  * REVISION - This section is ONLY for Browser Extension Wallets.
  *
@@ -430,7 +429,7 @@ export class MyWallet implements AptosWallet {
  * same file as your "MyWallet" implementation in practice since registerWallet must be called
  * when the page is loaded.
  */
-;(function () {
+;(() => {
   if (typeof window === 'undefined') return
   const myWallet = new MyWallet()
   registerWallet(myWallet)

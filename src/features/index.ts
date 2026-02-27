@@ -2,19 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IdentifierRecord, WalletWithFeatures } from '@wallet-standard/core'
-
+import type { AptosChangeNetworkFeature } from './aptosChangeNetwork'
+import type { AptosConnectFeature } from './aptosConnect'
+import type { AptosDisconnectFeature } from './aptosDisconnect'
+import type { AptosGetAccountFeature } from './aptosGetAccount'
+import type { AptosGetNetworkFeature } from './aptosGetNetwork'
+import type { AptosOnAccountChangeFeature } from './aptosOnAccountChange'
+import type { AptosOnNetworkChangeFeature } from './aptosOnNetworkChange'
+import type { AptosOpenInMobileAppFeature } from './aptosOpenInMobileApp'
 import type { AptosSignAndSubmitTransactionFeature } from './aptosSignAndSubmitTransaction'
-import { AptosSignMessageFeature } from './aptosSignMessage'
-import { AptosGetAccountFeature } from './aptosGetAccount'
-import { AptosConnectFeature } from './aptosConnect'
-import { AptosGetNetworkFeature } from './aptosGetNetwork'
-import { AptosOnAccountChangeFeature } from './aptosOnAccountChange'
-import { AptosOnNetworkChangeFeature } from './aptosOnNetworkChange'
-import { AptosSignTransactionFeature } from './aptosSignTransaction'
-import { AptosDisconnectFeature } from './aptosDisconnect'
-import { AptosOpenInMobileAppFeature } from './aptosOpenInMobileApp'
-import { AptosChangeNetworkFeature } from './aptosChangeNetwork'
-import { AptosSignInFeature } from './aptosSignIn'
+import type { AptosSignInFeature } from './aptosSignIn'
+import type { AptosSignMessageFeature } from './aptosSignMessage'
+import type { AptosSignTransactionFeature } from './aptosSignTransaction'
 
 /**
  * Wallet Standard features that are unique to Aptos, and that all Aptos wallets are expected to implement.
@@ -50,15 +49,15 @@ export type WalletWithRequiredFeatures = WalletWithFeatures<
  */
 export type MinimallyRequiredFeatures = AptosFeatures
 
-export * from './aptosSignAndSubmitTransaction'
-export * from './aptosSignMessage'
-export * from './aptosGetAccount'
+export * from './aptosChangeNetwork'
 export * from './aptosConnect'
+export * from './aptosDisconnect'
+export * from './aptosGetAccount'
 export * from './aptosGetNetwork'
 export * from './aptosOnAccountChange'
 export * from './aptosOnNetworkChange'
-export * from './aptosChangeNetwork'
-export * from './aptosDisconnect'
-export * from './aptosSignTransaction'
 export * from './aptosOpenInMobileApp'
+export * from './aptosSignAndSubmitTransaction'
 export * from './aptosSignIn'
+export * from './aptosSignMessage'
+export * from './aptosSignTransaction'

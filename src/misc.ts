@@ -1,7 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { Network } from '@aptos-labs/ts-sdk'
+import type { Network } from '@aptos-labs/ts-sdk'
 
 export type TransactionHash = `0x${string}`
 

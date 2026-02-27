@@ -1,5 +1,5 @@
+import type { Format, Options } from 'tsup'
 import { defineConfig } from 'tsup'
-import type { Options, Format } from 'tsup'
 
 // Ensure that these option fields are not undefined
 type MandatoryOptions = Options & {

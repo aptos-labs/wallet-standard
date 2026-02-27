@@ -1,7 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import {
+import type {
   AccountAddress,
   AccountAuthenticator,
   AnyRawTransaction,
@@ -10,7 +10,7 @@ import {
   PublicKey,
   TransactionPayload
 } from '@aptos-labs/ts-sdk'
-import { UserResponse } from '../misc'
+import type { UserResponse } from '../misc'
 
 // region Feature definition
 

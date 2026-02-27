@@ -4,6 +4,10 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
+- Replace Prettier with Biome for formatting and linting
+- Add recommended Biome lint rules (import type enforcement, import sorting)
+- Fix `.map()` misuse in `detect.ts` (changed to `.forEach()` for side-effect-only iteration)
+
 # 0.5.2 (2025-09-15)
 
 - Support ts-sdk version 5.x.x in addition to 4.x.x
