@@ -4,9 +4,9 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
-# 0.6.0 (2026-02-27)
+# 1.0.0 (2026-03-12)
 
-- [breaking] Support wallet standard version 1.1.1 and drop support for @wallet-standard/core versions < 1.1.1
+- Remove support for Node < 22
 - Support ts-sdk version 6.x.x, remove support for ts-sdk version < 5.x.x
 - Replace Prettier with Biome for formatting and linting
 - Add recommended Biome lint rules (import type enforcement, import sorting)
