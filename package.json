@@ -8,6 +8,7 @@
   "bugs": {
     "url": "https://github.com/aptos-labs/wallet-standard/issues/new/choose"
   },
+  "sideEffects": false,
   "main": "dist/common/index.js",
   "module": "dist/esm/index.mjs",
   "types": "./dist/common/index.d.ts",
@@ -31,13 +32,12 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "clean": "rm -rf tsconfig.tsbuildinfo ./dist",
+    "clean": "rm -rf ./dist",
     "dev": "pnpm build --watch",
     "build": "pnpm build:clear && tsup",
     "build:clear": "rm -rf ./dist",
-    "build:tsup": "tsup ./src/index.ts --format esm,cjs --sourcemap",
-    "build:types": "tsc --build",
     "prepublishOnly": "pnpm build",
+    "format": "biome format --write .",
     "lint": "biome check .",
     "lint:fix": "biome check --write ."
   },
@@ -46,8 +46,8 @@
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "@biomejs/biome": "^2.4.6",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
