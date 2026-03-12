@@ -1,5 +1,5 @@
+import type { Format, Options } from 'tsup'
 import { defineConfig } from 'tsup'
-import type { Options, Format } from 'tsup'
 
 // Ensure that these option fields are not undefined
 type MandatoryOptions = Options & {
@@ -11,14 +11,13 @@ type MandatoryOptions = Options & {
 // Default config, used as a base template
 const DEFAULT_CONFIG: Options = {
   bundle: true,
-  clean: true, // clean up the dist folder
-  dts: true, // generate dts files
+  clean: true,
+  dts: true,
   minify: true,
-  entry: ['src/index.ts'], // include all files under src
+  entry: ['src/index.ts'],
   skipNodeModulesBundle: true,
   sourcemap: true,
-  splitting: true,
-  target: 'es2020'
+  target: 'es2022'
 }
 
 // Common.js config
@@ -26,16 +25,16 @@ const COMMON_CONFIG: MandatoryOptions = {
   ...DEFAULT_CONFIG,
   format: 'cjs',
   outDir: 'dist/common',
-  platform: 'node'
+  platform: 'neutral'
 }
 
 // ESM config
 const ESM_CONFIG: MandatoryOptions = {
   ...DEFAULT_CONFIG,
-  entry: ['src/**/*.ts'],
   format: 'esm',
   outDir: 'dist/esm',
-  platform: 'node'
+  platform: 'neutral',
+  splitting: true
 }
 
 export default defineConfig([COMMON_CONFIG, ESM_CONFIG])

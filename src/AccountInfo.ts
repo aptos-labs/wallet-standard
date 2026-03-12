@@ -1,14 +1,14 @@
 import {
   AccountAddress,
-  AccountAddressInput,
+  type AccountAddressInput,
   AnyPublicKey,
-  Deserializer,
+  type Deserializer,
   Ed25519PublicKey,
   MultiEd25519PublicKey,
   MultiKey,
-  PublicKey,
+  type PublicKey,
   Serializable,
-  Serializer,
+  type Serializer,
   SigningScheme
 } from '@aptos-labs/ts-sdk'
 

@@ -4,6 +4,24 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
+# 1.0.0 (2026-03-12)
+
+- Remove support for Node < 22
+- Support ts-sdk version 6.x.x, remove support for ts-sdk version < 5.x.x
+- Replace Prettier with Biome for formatting and linting
+- Add recommended Biome lint rules (import type enforcement, import sorting)
+- Fix `.map()` misuse in `detect.ts` (changed to `.forEach()` for side-effect-only iteration)
+- Clean up build configuration (tsconfig, tsup, package.json)
+- Add `isolatedModules` to tsconfig for esbuild compatibility
+- Remove stale tsconfig options (`declarationDir`, `experimentalDecorators`, `allowJs`, `declarationMap`)
+- Remove non-existent `packages` from tsconfig include
+- Use single entry point for both CJS and ESM builds (removes excessive chunk files)
+- Set `platform: 'neutral'` for runtime-agnostic output
+- Move `splitting` to ESM config only
+- Remove stale `build:tsup` and `build:types` scripts
+- Simplify `clean` script
+- Add `sideEffects: false` for better tree-shaking
+
 # 0.5.2 (2025-09-15)
 
 - Support ts-sdk version 5.x.x in addition to 4.x.x

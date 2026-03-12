@@ -1,7 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import { NetworkInfo, UserResponse } from '../misc'
+import type { NetworkInfo, UserResponse } from '../misc'
 
 /** Version of the feature. */
 export type AptosChangeNetworkVersion = '1.0.0'

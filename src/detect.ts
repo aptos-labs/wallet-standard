@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {
-  Wallet,
-  WalletWithFeatures,
-  WalletsEventsListeners,
-  getWallets
+  getWallets,
+  type Wallet,
+  type WalletsEventsListeners,
+  type WalletWithFeatures
 } from '@wallet-standard/core'
 
-import { MinimallyRequiredFeatures } from './features'
-import { AptosWallet } from './wallet'
+import type { MinimallyRequiredFeatures } from './features'
+import type { AptosWallet } from './wallet'
 
 // These features are absolutely required for wallets to function in the Aptos ecosystem.
 // Eventually, as wallets have more consistent support of features, we may want to extend this list.
@@ -50,7 +50,7 @@ export function getAptosWallets(): {
 
   const aptosWallets: Wallet[] = []
 
-  wallets.map((wallet: Wallet) => {
+  wallets.forEach((wallet: Wallet) => {
     const isAptos = isWalletWithRequiredFeatureSet(wallet)
 
     if (isAptos) {
