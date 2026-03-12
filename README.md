@@ -2,7 +2,7 @@
 
 The Aptos Wallet Standard defines APIs for wallet and application interactions for the Aptos ecosystem.
 
-It is based on a general [Wallet Standard](https://github.com/wallet-standard/wallet-standard) which is is a chain-agnostic set of interfaces and conventions that aim to improve how applications interact with injected wallets.
+It is based on a general [Wallet Standard](https://github.com/wallet-standard/wallet-standard) which is a chain-agnostic set of interfaces and conventions that aim to improve how applications interact with injected wallets.
 
 ## Code
 
