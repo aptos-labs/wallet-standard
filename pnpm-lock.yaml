@@ -4,34 +4,29 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  glob@^10: ^10.5.0
-  minimatch@^9: ^9.0.7
-  rollup@^4: ^4.59.0
-
 importers:
 
   .:
     dependencies:
       '@aptos-labs/ts-sdk':
-        specifier: ^6.1.0
-        version: 6.1.0(got@11.8.6)
+        specifier: ^6.3.1
+        version: 6.3.1(got@11.8.6)
       '@wallet-standard/core':
         specifier: ^1.0.3
         version: 1.1.1
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.6
+        specifier: 2.4.6
         version: 2.4.6
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.2
+        version: 6.0.2
 
   example/basic:
     dependencies:
       '@aptos-labs/ts-sdk':
-        specifier: ^6.1.0
-        version: 6.1.0(got@11.8.6)
+        specifier: ^6.3.1
+        version: 6.3.1(got@11.8.6)
       '@aptos-labs/wallet-standard':
         specifier: workspace:*
         version: link:../..
@@ -51,8 +46,8 @@ packages:
     peerDependencies:
       got: ^11.8.6
 
-  '@aptos-labs/ts-sdk@6.1.0':
-    resolution: {integrity: sha512-YjtEXivGj0xuf3eKzrnKOfjZcYIWUR1E2zNJ4JempgMgoM+VVPbp7b1Ubu24UcOYxRYLb8/kKavOUg62o8zElw==}
+  '@aptos-labs/ts-sdk@6.3.1':
+    resolution: {integrity: sha512-1C13IaHgNIo6MHMTQEcDzeuqTNv++evdY+Ph3IAGLnHlG7Yevdxw50W0nyAJRf4bLzQDI20wfJ66wD2qMg7Rew==}
     engines: {node: '>=20.0.0'}
 
   '@biomejs/biome@2.4.6':
@@ -77,24 +72,28 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@biomejs/cli-linux-arm64@2.4.6':
     resolution: {integrity: sha512-kMLaI7OF5GN1Q8Doymjro1P8rVEoy7BKQALNz6fiR8IC1WKduoNyteBtJlHT7ASIL0Cx2jR6VUOBIbcB1B8pew==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@biomejs/cli-linux-x64-musl@2.4.6':
     resolution: {integrity: sha512-C9s98IPDu7DYarjlZNuzJKTjVHN03RUnmHV5htvqsx6vEUXCDSJ59DNwjKVD5XYoSS4N+BYhq3RTBAL8X6svEg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@biomejs/cli-linux-x64@2.4.6':
     resolution: {integrity: sha512-oHXmUFEoH8Lql1xfc3QkFLiC1hGR7qedv5eKNlC185or+o4/4HiaU7vYODAH3peRCfsuLr1g6v2fK9dFFOYdyw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@biomejs/cli-win32-arm64@2.4.6':
     resolution: {integrity: sha512-xzThn87Pf3YrOGTEODFGONmqXpTwUNxovQb72iaUOdcw8sBSY3+3WD8Hm9IhMYLnPi0n32s3L3NWU6+eSjfqFg==}
@@ -277,8 +276,8 @@ packages:
   responselike@2.0.1:
     resolution: {integrity: sha512-4gl03wn3hj1HP3yzgdI7d3lCkF95F21Pz4BPGvKHinyQzALR5CapwC8yIi0Rh58DEMQ/SguC03wFj2k0M/mHhw==}
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -298,7 +297,7 @@ snapshots:
     dependencies:
       got: 11.8.6
 
-  '@aptos-labs/ts-sdk@6.1.0(got@11.8.6)':
+  '@aptos-labs/ts-sdk@6.3.1(got@11.8.6)':
     dependencies:
       '@aptos-labs/aptos-cli': 1.1.1
       '@aptos-labs/aptos-client': 2.2.0(got@11.8.6)
@@ -519,7 +518,7 @@ snapshots:
     dependencies:
       lowercase-keys: 2.0.0
 
-  typescript@5.9.3: {}
+  typescript@6.0.2: {}
 
   undici-types@7.10.0: {}
 

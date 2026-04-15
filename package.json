@@ -2,7 +2,6 @@
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.13.1",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
@@ -40,18 +39,11 @@
     "lint:fix": "biome check --write ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^6.1.0",
+    "@aptos-labs/ts-sdk": "^6.3.1",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
-    "typescript": "^5.9.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "glob@^10": "^10.5.0",
-      "minimatch@^9": "^9.0.7",
-      "rollup@^4": "^4.59.0"
-    }
+    "@biomejs/biome": "2.4.6",
+    "typescript": "^6.0.2"
   }
 }
