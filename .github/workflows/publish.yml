@@ -1,0 +1,66 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Validate release tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          if ! echo "$TAG" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
+            echo "::error::Release tag '$TAG' does not match pattern vMAJOR.MINOR.PATCH[-prerelease]"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v6
+
+      - name: Verify package.json version matches tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          PKG_VERSION="v$(node -p 'require("./package.json").version')"
+          if [ "$PKG_VERSION" != "$TAG" ]; then
+            echo "::error::package.json version ($PKG_VERSION) does not match release tag ($TAG)"
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm build
+
+      - name: Verify build output exists
+        run: |
+          test -f dist/index.js   || { echo "Missing dist/index.js"; exit 1; }
+          test -f dist/index.d.ts || { echo "Missing dist/index.d.ts"; exit 1; }
+
+      - name: Upgrade npm (bundled npm is broken on this runner image)
+        run: |
+          tarball_url=$(curl -sS https://registry.npmjs.org/npm/latest | node -p 'JSON.parse(require("fs").readFileSync(0,"utf8")).dist.tarball')
+          curl -sS "$tarball_url" -o /tmp/npm-latest.tgz
+          npm_dir="$(dirname "$(which npm)")/../lib/node_modules/npm"
+          rm -rf "$npm_dir"
+          mkdir -p "$npm_dir"
+          tar xzf /tmp/npm-latest.tgz --strip-components=1 -C "$npm_dir"
+          npm --version
+
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
