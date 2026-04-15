@@ -9,23 +9,18 @@
     "url": "https://github.com/aptos-labs/wallet-standard/issues/new/choose"
   },
   "sideEffects": false,
-  "main": "dist/common/index.js",
-  "module": "dist/esm/index.mjs",
-  "types": "./dist/common/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "engines": {
     "node": ">=22.0.0"
   },
   "exports": {
     ".": {
       "source": "./src/index.ts",
-      "require": {
-        "types": "./dist/common/index.d.ts",
-        "default": "./dist/common/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -36,8 +31,8 @@
   ],
   "scripts": {
     "clean": "rm -rf ./dist",
-    "dev": "pnpm build --watch",
-    "build": "pnpm build:clear && tsup",
+    "dev": "tsc --watch",
+    "build": "pnpm build:clear && tsc",
     "build:clear": "rm -rf ./dist",
     "prepublishOnly": "pnpm build",
     "format": "biome format --write .",
@@ -50,7 +45,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
-    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "pnpm": {

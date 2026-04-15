@@ -10,7 +10,7 @@ import type {
   PublicKey,
   TransactionPayload
 } from '@aptos-labs/ts-sdk'
-import type { UserResponse } from '../misc'
+import type { UserResponse } from '../misc.js'
 
 // region Feature definition
 

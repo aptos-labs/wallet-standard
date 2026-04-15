@@ -8,8 +8,8 @@ import {
   type WalletWithFeatures
 } from '@wallet-standard/core'
 
-import type { MinimallyRequiredFeatures } from './features'
-import type { AptosWallet } from './wallet'
+import type { MinimallyRequiredFeatures } from './features/index.js'
+import type { AptosWallet } from './wallet.js'
 
 // These features are absolutely required for wallets to function in the Aptos ecosystem.
 // Eventually, as wallets have more consistent support of features, we may want to extend this list.

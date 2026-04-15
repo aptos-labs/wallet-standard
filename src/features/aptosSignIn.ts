@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Signature } from '@aptos-labs/ts-sdk'
-import type { AccountInfo } from '../AccountInfo'
-import type { UserResponse } from '../misc'
+import type { AccountInfo } from '../AccountInfo.js'
+import type { UserResponse } from '../misc.js'
 
 /**
  * AIP: [Sign in with Aptos](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-116.md)

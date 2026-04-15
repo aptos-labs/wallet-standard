@@ -2,7 +2,10 @@
   "name": "basic-wallet",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@aptos-labs/wallet-standard": "workspace:*"
+    "@aptos-labs/ts-sdk": "^6.1.0",
+    "@aptos-labs/wallet-standard": "workspace:*",
+    "@wallet-standard/core": "^1.0.3"
   }
 }
