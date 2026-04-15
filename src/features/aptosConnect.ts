@@ -1,8 +1,8 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountInfo } from '../AccountInfo'
-import type { NetworkInfo, UserResponse } from '../misc'
+import type { AccountInfo } from '../AccountInfo.js'
+import type { NetworkInfo, UserResponse } from '../misc.js'
 
 /** Version of the feature. */
 export type AptosConnectVersion = '1.0.0'

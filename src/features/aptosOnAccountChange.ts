@@ -1,7 +1,7 @@
 // Copyright © Aptos Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountInfo } from '../AccountInfo'
+import type { AccountInfo } from '../AccountInfo.js'
 
 /** Version of the feature. */
 export type AptosOnAccountChangeVersion = '1.0.0'

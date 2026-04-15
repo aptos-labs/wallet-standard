@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { InputGenerateTransactionPayloadData } from '@aptos-labs/ts-sdk'
-import type { UserResponse } from '../misc'
+import type { UserResponse } from '../misc.js'
 
 /** Version of the feature. */
 export type AptosSignAndSubmitTransactionVersion = '1.1.0'
