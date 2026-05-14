@@ -9,7 +9,6 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "packageManager": "pnpm@10.33.0",
   "engines": {
@@ -17,10 +16,9 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "source": "./src/index.ts",
+      "import": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
