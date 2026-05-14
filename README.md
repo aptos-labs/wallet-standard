@@ -18,7 +18,7 @@ pnpm add @aptos-labs/wallet-standard
 
 This package requires the following peer dependencies:
 
-- [`@aptos-labs/ts-sdk`](https://github.com/aptos-labs/aptos-ts-sdk) `^6.3.1`
+- [`@aptos-labs/ts-sdk`](https://github.com/aptos-labs/aptos-ts-sdk) `^7.0.0`
 - [`@wallet-standard/core`](https://github.com/wallet-standard/wallet-standard) `^1.0.3`
 
 ## For Dapp Developers
@@ -65,6 +65,7 @@ To make your wallet compatible with the Aptos Wallet Standard, implement the `Ap
 ### 1. Implement the Wallet Interface
 
 ```typescript
+import { APTOS_CHAINS } from "@aptos-labs/wallet-standard";
 import type { AptosWallet, AptosFeatures } from "@aptos-labs/wallet-standard";
 
 class MyWallet implements AptosWallet {
@@ -184,7 +185,16 @@ import {
 
 ### User Responses
 
-All user-facing wallet methods return a `UserResponse<T>`, which is a discriminated union:
+Methods that prompt the user for approval return a `UserResponse<T>`, a discriminated union that lets the wallet signal either approval (with a result) or rejection. The following features use this shape:
+
+- `aptos:connect`
+- `aptos:signTransaction`
+- `aptos:signAndSubmitTransaction`
+- `aptos:signMessage`
+- `aptos:signIn`
+- `aptos:changeNetwork`
+
+Other required features return their value directly: `aptos:account` returns `AccountInfo`, `aptos:network` returns `NetworkInfo`, `aptos:disconnect` returns `void`, and the `onAccountChange` / `onNetworkChange` features register subscriptions.
 
 ```typescript
 import { UserResponseStatus } from "@aptos-labs/wallet-standard";
