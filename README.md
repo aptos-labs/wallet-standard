@@ -194,7 +194,7 @@ Methods that prompt the user for approval return a `UserResponse<T>`, a discrimi
 - `aptos:signIn`
 - `aptos:changeNetwork`
 
-Other required features return their value directly: `aptos:account` returns `AccountInfo`, `aptos:network` returns `NetworkInfo`, `aptos:disconnect` returns `void`, and the `onAccountChange` / `onNetworkChange` features register subscriptions.
+Other required features return their value directly (still asynchronously): `aptos:account` returns `Promise<AccountInfo>`, `aptos:network` returns `Promise<NetworkInfo>`, `aptos:disconnect` returns `Promise<void>`, and the `onAccountChange` / `onNetworkChange` features register subscriptions.
 
 ```typescript
 import { UserResponseStatus } from "@aptos-labs/wallet-standard";

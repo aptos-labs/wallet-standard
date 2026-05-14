@@ -52,13 +52,25 @@ jobs:
           test -f dist/index.d.ts || { echo "Missing dist/index.d.ts"; exit 1; }
 
       - name: Upgrade npm (bundled npm is broken on this runner image)
+        env:
+          # Pinned for reproducibility; bump deliberately when a newer npm is needed.
+          NPM_VERSION: "11.4.2"
         run: |
-          tarball_url=$(curl -sS https://registry.npmjs.org/npm/latest | node -p 'JSON.parse(require("fs").readFileSync(0,"utf8")).dist.tarball')
-          curl -sS "$tarball_url" -o /tmp/npm-latest.tgz
+          metadata=$(curl -fsS "https://registry.npmjs.org/npm/${NPM_VERSION}")
+          tarball_url=$(echo "$metadata" | node -p 'JSON.parse(require("fs").readFileSync(0,"utf8")).dist.tarball')
+          expected_integrity=$(echo "$metadata" | node -p 'JSON.parse(require("fs").readFileSync(0,"utf8")).dist.integrity')
+          curl -fsS "$tarball_url" -o /tmp/npm.tgz
+          algo="${expected_integrity%%-*}"
+          expected_hash="${expected_integrity#*-}"
+          actual_hash=$(openssl dgst -"$algo" -binary /tmp/npm.tgz | base64 | tr -d '\n')
+          if [ "$actual_hash" != "$expected_hash" ]; then
+            echo "::error::Integrity check failed for npm@${NPM_VERSION} (expected ${expected_integrity})"
+            exit 1
+          fi
           npm_dir="$(dirname "$(which npm)")/../lib/node_modules/npm"
           rm -rf "$npm_dir"
           mkdir -p "$npm_dir"
-          tar xzf /tmp/npm-latest.tgz --strip-components=1 -C "$npm_dir"
+          tar xzf /tmp/npm.tgz --strip-components=1 -C "$npm_dir"
           npm --version
 
       - run: npm publish --provenance --access public

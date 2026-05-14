@@ -7,7 +7,7 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 - Publish the package as **ESM-only**: set `type` to `module`, expose a single `./dist/index.js` entry (no `require` / CommonJS branch), and build with `tsc` using `module` / `moduleResolution` `NodeNext`.
 - Emit TypeScript declarations (`declaration` / `declarationMap`) into `dist` alongside compiled JS.
 - Use `.js` file extensions on relative import and export specifiers so the published output resolves under Node’s native ESM loader.
-- Point `main`, `types`, and `exports` at the unified `dist` layout (remove the previous `dist/common` and `dist/esm` split and remove **tsup** from the toolchain).
+- Drop the top-level `main` field and point `types` and `exports` at the unified `dist` layout (remove the previous `dist/common` and `dist/esm` split and remove **tsup** from the toolchain).
 - Change the `dev` script to `tsc --watch` (watch mode is passed to the compiler directly).
 - Update `example/basic` for ESM: add `type: module` and declare direct dependencies on `@aptos-labs/ts-sdk` and `@wallet-standard/core` (in addition to the workspace package).
 
