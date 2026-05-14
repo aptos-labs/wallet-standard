@@ -1,7 +1,7 @@
 {
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
@@ -38,7 +38,7 @@
     "lint:fix": "biome check --write ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^7.0.0",
+    "@aptos-labs/ts-sdk": "^7.0.1",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aptos-labs/ts-sdk':
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: ^7.0.1
+        version: 7.0.1
       '@wallet-standard/core':
         specifier: ^1.0.3
         version: 1.1.1
@@ -49,6 +49,10 @@ packages:
 
   '@aptos-labs/ts-sdk@7.0.0':
     resolution: {integrity: sha512-/gtKRewQScJ5RMvfPNd64poZdI0CF3qqkj48oEDNG07gb0i3mGadarCmu899KqeA47+nYFH7Lttkq+0PIMYGcQ==}
+    engines: {node: '>=22.0.0'}
+
+  '@aptos-labs/ts-sdk@7.0.1':
+    resolution: {integrity: sha512-kKO43zDsUaLzrNAqVV5eC4OG9ZDtCwaKwmX5S9iN0T4bF/HY1TU/zPoEJvfZGv8ztPeBixC7iVXqU4jNHZ3QFA==}
     engines: {node: '>=22.0.0'}
 
   '@biomejs/biome@2.4.6':
@@ -196,6 +200,19 @@ snapshots:
       undici: 7.25.0
 
   '@aptos-labs/ts-sdk@7.0.0':
+    dependencies:
+      '@aptos-labs/aptos-cli': 3.0.0
+      '@aptos-labs/aptos-client': 4.0.0
+      '@noble/ciphers': 2.2.0
+      '@noble/curves': 2.2.0
+      '@noble/hashes': 2.2.0
+      '@scure/bip32': 2.2.0
+      '@scure/bip39': 2.2.0
+      eventemitter3: 5.0.4
+      jwt-decode: 4.0.0
+      poseidon-lite: 0.3.0
+
+  '@aptos-labs/ts-sdk@7.0.1':
     dependencies:
       '@aptos-labs/aptos-cli': 3.0.0
       '@aptos-labs/aptos-client': 4.0.0
