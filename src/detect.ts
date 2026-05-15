@@ -13,24 +13,30 @@ import type { AptosWallet } from './wallet.js'
 
 // These features are absolutely required for wallets to function in the Aptos ecosystem.
 // Eventually, as wallets have more consistent support of features, we may want to extend this list.
-const REQUIRED_FEATURES: (keyof MinimallyRequiredFeatures)[] = [
-  'aptos:account',
-  'aptos:connect',
-  'aptos:disconnect',
-  'aptos:network',
-  'aptos:onAccountChange',
-  'aptos:onNetworkChange',
-  'aptos:signMessage',
-  'aptos:signTransaction'
-]
+// Each required feature is paired with the method name it must expose, so that a stub wallet
+// registering empty/null feature objects fails the check rather than passing the type predicate
+// and throwing later when the dApp invokes the missing method.
+const REQUIRED_FEATURE_METHODS: { readonly [K in keyof MinimallyRequiredFeatures]: string } = {
+  'aptos:account': 'account',
+  'aptos:connect': 'connect',
+  'aptos:disconnect': 'disconnect',
+  'aptos:network': 'network',
+  'aptos:onAccountChange': 'onAccountChange',
+  'aptos:onNetworkChange': 'onNetworkChange',
+  'aptos:signMessage': 'signMessage',
+  'aptos:signTransaction': 'signTransaction'
+}
 
 export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet['features']>(
   wallet: Wallet,
   additionalFeatures: (keyof AdditionalFeatures)[] = []
 ): wallet is WalletWithFeatures<MinimallyRequiredFeatures & AdditionalFeatures> {
-  return [...REQUIRED_FEATURES, ...additionalFeatures].every(
-    (feature) => feature in wallet.features
-  )
+  for (const [feature, method] of Object.entries(REQUIRED_FEATURE_METHODS)) {
+    const impl = (wallet.features as Record<string, unknown>)[feature]
+    if (typeof impl !== 'object' || impl === null) return false
+    if (typeof (impl as Record<string, unknown>)[method] !== 'function') return false
+  }
+  return additionalFeatures.every((feature) => (feature as string) in wallet.features)
 }
 
 /**

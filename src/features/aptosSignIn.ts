@@ -127,6 +127,15 @@ export type AptosSignInBoundFields = {
 
 /**
  * Output fields from the `signIn` signing request to the wallet.
+ *
+ * @remarks
+ * **Security:** `input` is the wallet's self-reported claim of which fields were
+ * incorporated into the signed message. Relying parties MUST reconstruct the SIWA
+ * signing message from `input` and verify `signature` against `account.publicKey`
+ * before trusting any field in `input`. In particular, do not use `input.address`
+ * as the authenticated address — derive it from `account.publicKey`. A malicious
+ * wallet can return any values it likes in `input`; only fields whose values are
+ * covered by a valid `signature` should be trusted.
  */
 export type AptosSignInOutput = {
   /**
