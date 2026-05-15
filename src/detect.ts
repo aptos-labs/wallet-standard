@@ -11,12 +11,24 @@ import {
 import type { MinimallyRequiredFeatures } from './features/index.js'
 import type { AptosWallet } from './wallet.js'
 
-// These features are absolutely required for wallets to function in the Aptos ecosystem.
-// Eventually, as wallets have more consistent support of features, we may want to extend this list.
+// Namespaces of features that all Aptos wallets MUST implement. This is intentionally narrower
+// than `keyof MinimallyRequiredFeatures`, which also includes the optional `Partial<...>`
+// features from features/index.ts (signIn, signAndSubmitTransaction, changeNetwork,
+// openInMobileApp).
+type RequiredFeatureNamespace =
+  | 'aptos:account'
+  | 'aptos:connect'
+  | 'aptos:disconnect'
+  | 'aptos:network'
+  | 'aptos:onAccountChange'
+  | 'aptos:onNetworkChange'
+  | 'aptos:signMessage'
+  | 'aptos:signTransaction'
+
 // Each required feature is paired with the method name it must expose, so that a stub wallet
 // registering empty/null feature objects fails the check rather than passing the type predicate
 // and throwing later when the dApp invokes the missing method.
-const REQUIRED_FEATURE_METHODS: { readonly [K in keyof MinimallyRequiredFeatures]: string } = {
+const REQUIRED_FEATURE_METHODS = {
   'aptos:account': 'account',
   'aptos:connect': 'connect',
   'aptos:disconnect': 'disconnect',
@@ -25,7 +37,7 @@ const REQUIRED_FEATURE_METHODS: { readonly [K in keyof MinimallyRequiredFeatures
   'aptos:onNetworkChange': 'onNetworkChange',
   'aptos:signMessage': 'signMessage',
   'aptos:signTransaction': 'signTransaction'
-}
+} as const satisfies Record<RequiredFeatureNamespace, string>
 
 export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet['features']>(
   wallet: Wallet,
