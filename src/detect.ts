@@ -45,18 +45,6 @@ export function getAptosWallets(): {
   ) => () => void
 } {
   const { get, on } = getWallets()
-
-  const wallets = get()
-
-  const aptosWallets: Wallet[] = []
-
-  wallets.forEach((wallet: Wallet) => {
-    const isAptos = isWalletWithRequiredFeatureSet(wallet)
-
-    if (isAptos) {
-      aptosWallets.push(wallet)
-    }
-  })
-
-  return { aptosWallets: aptosWallets as AptosWallet[], on }
+  const aptosWallets = get().filter((w) => isWalletWithRequiredFeatureSet(w)) as AptosWallet[]
+  return { aptosWallets, on }
 }
