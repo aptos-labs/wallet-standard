@@ -31,7 +31,9 @@
     "dev": "tsc --watch",
     "build": "pnpm build:clear && tsc",
     "build:clear": "rm -rf ./dist",
-    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit",
+    "check:publish": "publint && attw --pack . --ignore-rules no-resolution cjs-resolves-to-esm",
+    "prepublishOnly": "pnpm build && pnpm check:publish",
     "format": "biome format --write .",
     "lint": "biome check .",
     "lint:fix": "biome check --write ."
@@ -41,7 +43,9 @@
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.4.6",
+    "publint": "^0.3.21",
     "typescript": "^6.0.2"
   }
 }
