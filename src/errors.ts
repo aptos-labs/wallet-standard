@@ -4,20 +4,20 @@ export enum AptosWalletErrorCode {
   InternalError = -30001
 }
 
-export const AptosWalletErrors = {
-  [AptosWalletErrorCode.Unauthorized]: {
+export const AptosWalletErrors = Object.freeze({
+  [AptosWalletErrorCode.Unauthorized]: Object.freeze({
     status: 'Unauthorized',
     message: 'The requested method and/or account has not been authorized by the user.'
-  },
-  [AptosWalletErrorCode.InternalError]: {
+  } as const),
+  [AptosWalletErrorCode.InternalError]: Object.freeze({
     status: 'Internal error',
     message: 'Something went wrong within the wallet.'
-  },
-  [AptosWalletErrorCode.Unsupported]: {
+  } as const),
+  [AptosWalletErrorCode.Unsupported]: Object.freeze({
     status: 'Unsupported',
     message: 'The requested feature is not supported.'
-  }
-} as const satisfies Record<AptosWalletErrorCode, { status: string; message: string }>
+  } as const)
+} as const) satisfies Record<AptosWalletErrorCode, { status: string; message: string }>
 
 export class AptosWalletError extends Error {
   readonly code: number
