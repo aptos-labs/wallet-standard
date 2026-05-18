@@ -1,7 +1,7 @@
 {
   "name": "@aptos-labs/wallet-standard",
   "description": "Aptos wallet standard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "homepage": "https://github.com/aptos-labs/wallet-standard",
   "bugs": {
@@ -9,8 +9,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "./dist/index.d.ts",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.2",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -32,17 +31,21 @@
     "dev": "tsc --watch",
     "build": "pnpm build:clear && tsc",
     "build:clear": "rm -rf ./dist",
-    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit",
+    "check:publish": "publint && attw --pack . --ignore-rules no-resolution cjs-resolves-to-esm",
+    "prepublishOnly": "pnpm build && pnpm check:publish",
     "format": "biome format --write .",
     "lint": "biome check .",
     "lint:fix": "biome check --write ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^7.0.0",
+    "@aptos-labs/ts-sdk": "^7.0.1",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.4.6",
+    "publint": "^0.3.21",
     "typescript": "^6.0.2"
   }
 }

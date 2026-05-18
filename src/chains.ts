@@ -21,8 +21,4 @@ export const APTOS_CHAINS = [
   APTOS_MAINNET_CHAIN
 ] as const
 
-export type AptosChain =
-  | typeof APTOS_DEVNET_CHAIN
-  | typeof APTOS_TESTNET_CHAIN
-  | typeof APTOS_LOCALNET_CHAIN
-  | typeof APTOS_MAINNET_CHAIN
+export type AptosChain = (typeof APTOS_CHAINS)[number]

@@ -8,6 +8,8 @@
     "moduleDetection": "force",
     "moduleResolution": "NodeNext",
     "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
     "rootDir": "./src",
     "outDir": "./dist",
     "skipLibCheck": true,

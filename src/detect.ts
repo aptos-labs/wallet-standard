@@ -11,26 +11,44 @@ import {
 import type { MinimallyRequiredFeatures } from './features/index.js'
 import type { AptosWallet } from './wallet.js'
 
-// These features are absolutely required for wallets to function in the Aptos ecosystem.
-// Eventually, as wallets have more consistent support of features, we may want to extend this list.
-const REQUIRED_FEATURES: (keyof MinimallyRequiredFeatures)[] = [
-  'aptos:account',
-  'aptos:connect',
-  'aptos:disconnect',
-  'aptos:network',
-  'aptos:onAccountChange',
-  'aptos:onNetworkChange',
-  'aptos:signMessage',
-  'aptos:signTransaction'
-]
+// Namespaces of features that all Aptos wallets MUST implement. This is intentionally narrower
+// than `keyof MinimallyRequiredFeatures`, which also includes the optional `Partial<...>`
+// features from features/index.ts (signIn, signAndSubmitTransaction, changeNetwork,
+// openInMobileApp).
+type RequiredFeatureNamespace =
+  | 'aptos:account'
+  | 'aptos:connect'
+  | 'aptos:disconnect'
+  | 'aptos:network'
+  | 'aptos:onAccountChange'
+  | 'aptos:onNetworkChange'
+  | 'aptos:signMessage'
+  | 'aptos:signTransaction'
+
+// Each required feature is paired with the method name it must expose, so that a stub wallet
+// registering empty/null feature objects fails the check rather than passing the type predicate
+// and throwing later when the dApp invokes the missing method.
+const REQUIRED_FEATURE_METHODS = {
+  'aptos:account': 'account',
+  'aptos:connect': 'connect',
+  'aptos:disconnect': 'disconnect',
+  'aptos:network': 'network',
+  'aptos:onAccountChange': 'onAccountChange',
+  'aptos:onNetworkChange': 'onNetworkChange',
+  'aptos:signMessage': 'signMessage',
+  'aptos:signTransaction': 'signTransaction'
+} as const satisfies Record<RequiredFeatureNamespace, string>
 
 export function isWalletWithRequiredFeatureSet<AdditionalFeatures extends Wallet['features']>(
   wallet: Wallet,
   additionalFeatures: (keyof AdditionalFeatures)[] = []
 ): wallet is WalletWithFeatures<MinimallyRequiredFeatures & AdditionalFeatures> {
-  return [...REQUIRED_FEATURES, ...additionalFeatures].every(
-    (feature) => feature in wallet.features
-  )
+  for (const [feature, method] of Object.entries(REQUIRED_FEATURE_METHODS)) {
+    const impl = (wallet.features as Record<string, unknown>)[feature]
+    if (typeof impl !== 'object' || impl === null) return false
+    if (typeof (impl as Record<string, unknown>)[method] !== 'function') return false
+  }
+  return additionalFeatures.every((feature) => (feature as string) in wallet.features)
 }
 
 /**
@@ -45,18 +63,6 @@ export function getAptosWallets(): {
   ) => () => void
 } {
   const { get, on } = getWallets()
-
-  const wallets = get()
-
-  const aptosWallets: Wallet[] = []
-
-  wallets.forEach((wallet: Wallet) => {
-    const isAptos = isWalletWithRequiredFeatureSet(wallet)
-
-    if (isAptos) {
-      aptosWallets.push(wallet)
-    }
-  })
-
-  return { aptosWallets: aptosWallets as AptosWallet[], on }
+  const aptosWallets = get().filter((w) => isWalletWithRequiredFeatureSet(w)) as AptosWallet[]
+  return { aptosWallets, on }
 }

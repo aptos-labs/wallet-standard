@@ -30,6 +30,17 @@ export type AptosSignMessageInput = {
   nonce: string
 }
 
+/**
+ * @remarks
+ * **Security:** Every field other than `signature` is the wallet's self-reported
+ * claim of what was signed. Relying parties MUST verify `signature` against the
+ * connected account's public key over `fullMessage`, and MUST confirm that
+ * `fullMessage` actually incorporates the fields the dApp requested via
+ * `AptosSignMessageInput` (e.g., if `input.address === true`, the dApp should
+ * verify that the expected address appears in `fullMessage`). A malicious wallet
+ * can omit requested bindings, substitute values, or return a `fullMessage` that
+ * differs from what `address` / `application` / `chainId` claim.
+ */
 export type AptosSignMessageOutput = {
   address?: string
   application?: string
