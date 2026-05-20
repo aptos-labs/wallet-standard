@@ -4,6 +4,9 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
+- Add **Vitest** test runner with V8 coverage (`pnpm test`, `pnpm test:watch`, `pnpm test:coverage`).
+- Add starter unit tests for `detect.isWalletWithRequiredFeatureSet` and the `errors` module.
+- Add a `Test + Coverage` CI job that uploads `lcov` to Codecov via tokenless OIDC (`codecov/codecov-action@v5`); add `codecov.yml`.
 - Publish the package as **ESM-only**: set `type` to `module`, expose a single `./dist/index.js` entry (no `require` / CommonJS branch), and build with `tsc` using `module` / `moduleResolution` `NodeNext`.
 - Emit TypeScript declarations (`declaration` / `declarationMap`) into `dist` alongside compiled JS.
 - Use `.js` file extensions on relative import and export specifiers so the published output resolves under Node’s native ESM loader.
