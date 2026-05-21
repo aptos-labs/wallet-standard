@@ -2,7 +2,7 @@
 
 All notable changes to the aptos-wallet-standard tool will be captured in this file. This changelog is written by hand for now. It adheres to the format set out by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-# Unreleased
+# 2.0.0 (2026-05-21)
 
 - Add **Vitest** test runner with V8 coverage (`pnpm test`, `pnpm test:watch`, `pnpm test:coverage`).
 - Add unit tests covering the public behaviors of the package: `AccountInfo` BCS wire format and round-trip for every `SigningScheme` variant, `detect.isWalletWithRequiredFeatureSet` / `getAptosWallets` filtering, `AptosWalletError` invariants, and the externally observable chain identifiers, feature namespaces, and `UserResponseStatus` values.
