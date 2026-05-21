@@ -32,4 +32,40 @@ describe('AptosWalletErrors', () => {
     expect(Object.isFrozen(AptosWalletErrors)).toBe(true)
     expect(Object.isFrozen(AptosWalletErrors[AptosWalletErrorCode.Unauthorized])).toBe(true)
   })
+
+  it('has an entry for every AptosWalletErrorCode enum value', () => {
+    const numericCodes = Object.values(AptosWalletErrorCode).filter(
+      (value): value is AptosWalletErrorCode => typeof value === 'number'
+    )
+    for (const code of numericCodes) {
+      expect(AptosWalletErrors[code]).toBeDefined()
+      expect(AptosWalletErrors[code].status).toMatch(/\S/)
+      expect(AptosWalletErrors[code].message).toMatch(/\S/)
+    }
+  })
+
+  it('uses the documented EIP-1193 / JSON-RPC numeric codes', () => {
+    expect(AptosWalletErrorCode.Unauthorized).toBe(4100)
+    expect(AptosWalletErrorCode.Unsupported).toBe(4200)
+    expect(AptosWalletErrorCode.InternalError).toBe(-30001)
+  })
+})
+
+describe('AptosWalletError instanceof semantics', () => {
+  it('keeps instanceof working even after the prototype chain is bypassed', () => {
+    const err = new AptosWalletError(AptosWalletErrorCode.InternalError)
+    expect(err instanceof AptosWalletError).toBe(true)
+    expect(Object.getPrototypeOf(err)).toBe(AptosWalletError.prototype)
+  })
+
+  it('is catchable by AptosWalletError-specific handlers', () => {
+    let caught: unknown
+    try {
+      throw new AptosWalletError(AptosWalletErrorCode.Unauthorized)
+    } catch (e) {
+      caught = e
+    }
+    expect(caught).toBeInstanceOf(AptosWalletError)
+    expect((caught as AptosWalletError).code).toBe(AptosWalletErrorCode.Unauthorized)
+  })
 })

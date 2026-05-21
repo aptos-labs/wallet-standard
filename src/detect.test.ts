@@ -1,7 +1,13 @@
 import type { Wallet } from '@wallet-standard/core'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { isWalletWithRequiredFeatureSet } from './detect.js'
+import { getAptosWallets, isWalletWithRequiredFeatureSet } from './detect.js'
+
+vi.mock('@wallet-standard/core', () => {
+  const get = vi.fn<() => readonly Wallet[]>()
+  const on = vi.fn()
+  return { getWallets: () => ({ get, on }) }
+})
 
 const REQUIRED_FEATURES = {
   'aptos:account': { account: () => undefined },
@@ -46,5 +52,45 @@ describe('isWalletWithRequiredFeatureSet', () => {
     const wallet = makeWallet({ ...REQUIRED_FEATURES, 'custom:extra': {} })
     expect(isWalletWithRequiredFeatureSet(wallet, ['custom:extra'])).toBe(true)
     expect(isWalletWithRequiredFeatureSet(wallet, ['custom:missing'])).toBe(false)
+  })
+})
+
+describe('getAptosWallets', () => {
+  afterEach(async () => {
+    const core = (await import('@wallet-standard/core')) as unknown as {
+      getWallets: () => { get: ReturnType<typeof vi.fn>; on: ReturnType<typeof vi.fn> }
+    }
+    core.getWallets().get.mockReset()
+    core.getWallets().on.mockReset()
+  })
+
+  it('returns only wallets satisfying the required-feature predicate', async () => {
+    const aptosCompatible = makeWallet({ ...REQUIRED_FEATURES })
+    const nonAptosWallet = makeWallet({ 'solana:signTransaction': {} })
+    const core = (await import('@wallet-standard/core')) as unknown as {
+      getWallets: () => { get: ReturnType<typeof vi.fn> }
+    }
+    core.getWallets().get.mockReturnValue([aptosCompatible, nonAptosWallet])
+
+    const { aptosWallets } = getAptosWallets()
+    expect(aptosWallets).toHaveLength(1)
+    expect(aptosWallets[0]).toBe(aptosCompatible)
+  })
+
+  it('returns an empty array when no compatible wallets are registered', async () => {
+    const core = (await import('@wallet-standard/core')) as unknown as {
+      getWallets: () => { get: ReturnType<typeof vi.fn> }
+    }
+    core.getWallets().get.mockReturnValue([])
+    expect(getAptosWallets().aptosWallets).toEqual([])
+  })
+
+  it('forwards the `on` listener from @wallet-standard/core unchanged', async () => {
+    const core = (await import('@wallet-standard/core')) as unknown as {
+      getWallets: () => { get: ReturnType<typeof vi.fn>; on: ReturnType<typeof vi.fn> }
+    }
+    core.getWallets().get.mockReturnValue([])
+    const { on } = getAptosWallets()
+    expect(on).toBe(core.getWallets().on)
   })
 })
