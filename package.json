@@ -32,6 +32,9 @@
     "build": "pnpm build:clear && tsc",
     "build:clear": "rm -rf ./dist",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "check:publish": "publint && attw --pack . --ignore-rules no-resolution cjs-resolves-to-esm",
     "prepublishOnly": "pnpm build && pnpm check:publish",
     "format": "biome format --write .",
@@ -45,7 +48,9 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.4.6",
+    "@vitest/coverage-v8": "^4.1.7",
     "publint": "^0.3.21",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.7"
   }
 }

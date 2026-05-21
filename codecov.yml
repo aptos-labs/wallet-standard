@@ -1,0 +1,26 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+        informational: true
+    patch:
+      default:
+        # New code added in a PR must not lower coverage. Today the package is at 100%;
+        # this status fails CI on any uncovered new lines.
+        target: 100%
+        threshold: 0%
+        informational: false
+
+comment:
+  layout: 'reach, diff, flags, files'
+  behavior: default
+  require_changes: false
+
+ignore:
+  - 'src/**/*.test.ts'
+  - 'src/index.ts'
+  - 'src/features/index.ts'
+  - 'dist'
+  - 'example'
