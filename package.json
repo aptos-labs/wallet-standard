@@ -42,10 +42,11 @@
     "lint:fix": "biome check --write ."
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": "^7.0.1",
+    "@aptos-labs/ts-sdk": "^7.1.0",
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
+    "@aptos-labs/ts-sdk": "^7.1.0",
     "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.4.6",
     "@vitest/coverage-v8": "^4.1.7",
