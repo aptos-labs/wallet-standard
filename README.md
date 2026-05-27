@@ -1,5 +1,11 @@
 # Aptos Wallet Standard
 
+[![npm version](https://img.shields.io/npm/v/@aptos-labs/wallet-standard)](https://www.npmjs.com/package/@aptos-labs/wallet-standard)
+[![npm downloads](https://img.shields.io/npm/dm/@aptos-labs/wallet-standard)](https://www.npmjs.com/package/@aptos-labs/wallet-standard)
+[![CI](https://github.com/aptos-labs/wallet-standard/actions/workflows/ci.yml/badge.svg)](https://github.com/aptos-labs/wallet-standard/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/aptos-labs/wallet-standard/graph/badge.svg)](https://codecov.io/gh/aptos-labs/wallet-standard)
+[![License](https://img.shields.io/npm/l/@aptos-labs/wallet-standard)](./LICENSE)
+
 The Aptos Wallet Standard defines TypeScript interfaces and utilities for wallet and dapp interactions in the Aptos ecosystem. It implements [AIP-62](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md), providing a consistent way for wallets to integrate with applications.
 
 Built on top of the chain-agnostic [Wallet Standard](https://github.com/wallet-standard/wallet-standard), this library extends it with Aptos-specific features like transaction signing, network management, and account handling.
@@ -18,7 +24,7 @@ pnpm add @aptos-labs/wallet-standard
 
 This package requires the following peer dependencies:
 
-- [`@aptos-labs/ts-sdk`](https://github.com/aptos-labs/aptos-ts-sdk) `^7.0.0`
+- [`@aptos-labs/ts-sdk`](https://github.com/aptos-labs/aptos-ts-sdk) `^7.1.0`
 - [`@wallet-standard/core`](https://github.com/wallet-standard/wallet-standard) `^1.0.3`
 
 ## For Dapp Developers
