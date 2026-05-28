@@ -53,7 +53,8 @@ jobs:
       - name: Upgrade npm (bundled npm is broken on this runner image)
         env:
           # Pinned for reproducibility; bump deliberately when a newer npm is needed.
-          NPM_VERSION: "11.4.2"
+          # 11.5.1+ is required: earlier versions lack lib/utils/oidc.js (OIDC tokenless publishing).
+          NPM_VERSION: "11.5.1"
         run: |
           metadata=$(curl -fsS "https://registry.npmjs.org/npm/${NPM_VERSION}")
           tarball_url=$(echo "$metadata" | node -p 'JSON.parse(require("fs").readFileSync(0,"utf8")).dist.tarball')
