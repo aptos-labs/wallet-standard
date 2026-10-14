@@ -50,12 +50,12 @@
     "@wallet-standard/core": "^1.0.3"
   },
   "devDependencies": {
-    "@aptos-labs/ts-sdk": "^7.1.0",
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@biomejs/biome": "2.4.6",
-    "@vitest/coverage-v8": "^4.1.7",
-    "publint": "^0.3.21",
-    "typescript": "^6.0.2",
-    "vitest": "^4.1.7"
+    "@aptos-labs/ts-sdk": "^7.5.0",
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "2.5.15",
+    "@vitest/coverage-v8": "^5.0.4",
+    "publint": "^0.3.25",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
   }
 }

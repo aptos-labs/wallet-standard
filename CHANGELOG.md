@@ -4,7 +4,8 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
-- No changes yet.
+- Update development and example dependencies to their latest releases, including
+  Aptos TypeScript SDK 7.5, Biome 2.5, Vitest 5, and TypeScript 7.
 
 # 2.0.0 (2026-05-21)
 
