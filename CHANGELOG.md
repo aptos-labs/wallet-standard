@@ -5,6 +5,8 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 # Unreleased
 
 - Update `vitest` and `@vitest/coverage-v8` to 5.1.1 and refresh the lockfile (including transitive `vite` 8.3.8 and `@wallet-standard/core` 1.1.2) to clear all `pnpm audit` advisories in the previous `vite` 8.0.13.
+- Update `@biomejs/biome` to 2.6.8 (schema migrated; Markdown/YAML formatting disabled in `biome.json` to preserve the previous formatting scope now that Biome 2.6 formats those file types) and `pnpm` to 12.23.0, and refresh the lockfile.
+- Update GitHub Actions to `actions/checkout` v7, `actions/setup-node` v7, `codecov/codecov-action` v7, and `pnpm/action-setup` v6.1.1; update the pinned npm in the publish workflow to 12.2.3.
 
 # 2.0.1 (2026-10-16)
 
