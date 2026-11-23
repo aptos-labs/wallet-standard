@@ -4,7 +4,7 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
-- No changes yet.
+- Update `vitest` and `@vitest/coverage-v8` to 5.1.1 and refresh the lockfile (including transitive `vite` 8.3.8 and `@wallet-standard/core` 1.1.2) to clear all `pnpm audit` advisories in the previous `vite` 8.0.13.
 
 # 2.0.1 (2026-10-16)
 
