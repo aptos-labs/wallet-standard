@@ -34,17 +34,17 @@ This package requires the following peer dependencies:
 Use `getAptosWallets()` to discover all registered Aptos-compatible wallets. This function filters for wallets that implement the [required feature set](#required-features).
 
 ```typescript
-import { getAptosWallets } from "@aptos-labs/wallet-standard";
+import { getAptosWallets } from '@aptos-labs/wallet-standard'
 
-const { aptosWallets, on } = getAptosWallets();
+const { aptosWallets, on } = getAptosWallets()
 
 // Use currently registered wallets
-console.log("Available wallets:", aptosWallets);
+console.log('Available wallets:', aptosWallets)
 
 // Listen for new wallets that register after page load
-const removeListener = on("register", (wallet) => {
-  console.log("New wallet registered:", wallet);
-});
+const removeListener = on('register', (wallet) => {
+  console.log('New wallet registered:', wallet)
+})
 ```
 
 ### Checking for Optional Features
@@ -52,12 +52,12 @@ const removeListener = on("register", (wallet) => {
 Use `isWalletWithRequiredFeatureSet()` to check if a wallet supports additional features beyond the required set:
 
 ```typescript
-import { isWalletWithRequiredFeatureSet } from "@aptos-labs/wallet-standard";
-import type { AptosSignAndSubmitTransactionFeature } from "@aptos-labs/wallet-standard";
+import { isWalletWithRequiredFeatureSet } from '@aptos-labs/wallet-standard'
+import type { AptosSignAndSubmitTransactionFeature } from '@aptos-labs/wallet-standard'
 
 if (
   isWalletWithRequiredFeatureSet<AptosSignAndSubmitTransactionFeature>(wallet, [
-    "aptos:signAndSubmitTransaction",
+    'aptos:signAndSubmitTransaction'
   ])
 ) {
   // Wallet supports sign-and-submit
@@ -71,40 +71,40 @@ To make your wallet compatible with the Aptos Wallet Standard, implement the `Ap
 ### 1. Implement the Wallet Interface
 
 ```typescript
-import { APTOS_CHAINS } from "@aptos-labs/wallet-standard";
-import type { AptosWallet, AptosFeatures } from "@aptos-labs/wallet-standard";
+import { APTOS_CHAINS } from '@aptos-labs/wallet-standard'
+import type { AptosWallet, AptosFeatures } from '@aptos-labs/wallet-standard'
 
 class MyWallet implements AptosWallet {
-  readonly name = "My Wallet";
-  readonly url = "https://mywallet.com";
-  readonly version = "1.0.0";
-  readonly icon = "data:image/png;base64,...";
-  readonly chains = APTOS_CHAINS;
-  accounts = [];
+  readonly name = 'My Wallet'
+  readonly url = 'https://mywallet.com'
+  readonly version = '1.0.0'
+  readonly icon = 'data:image/png;base64,...'
+  readonly chains = APTOS_CHAINS
+  accounts = []
 
   get features(): AptosFeatures {
     return {
-      "aptos:connect": { version: "1.0.0", connect: this.connect },
-      "aptos:disconnect": { version: "1.0.0", disconnect: this.disconnect },
-      "aptos:account": { version: "1.0.0", account: this.account },
-      "aptos:network": { version: "1.0.0", network: this.network },
-      "aptos:signTransaction": {
-        version: "1.0.0",
-        signTransaction: this.signTransaction,
+      'aptos:connect': { version: '1.0.0', connect: this.connect },
+      'aptos:disconnect': { version: '1.0.0', disconnect: this.disconnect },
+      'aptos:account': { version: '1.0.0', account: this.account },
+      'aptos:network': { version: '1.0.0', network: this.network },
+      'aptos:signTransaction': {
+        version: '1.0.0',
+        signTransaction: this.signTransaction
       },
-      "aptos:signMessage": {
-        version: "1.0.0",
-        signMessage: this.signMessage,
+      'aptos:signMessage': {
+        version: '1.0.0',
+        signMessage: this.signMessage
       },
-      "aptos:onAccountChange": {
-        version: "1.0.0",
-        onAccountChange: this.onAccountChange,
+      'aptos:onAccountChange': {
+        version: '1.0.0',
+        onAccountChange: this.onAccountChange
       },
-      "aptos:onNetworkChange": {
-        version: "1.0.0",
-        onNetworkChange: this.onNetworkChange,
-      },
-    };
+      'aptos:onNetworkChange': {
+        version: '1.0.0',
+        onNetworkChange: this.onNetworkChange
+      }
+    }
   }
 
   // ... implement each feature method
@@ -116,10 +116,10 @@ class MyWallet implements AptosWallet {
 For browser extension wallets, call `registerWallet` when the page loads:
 
 ```typescript
-import { registerWallet } from "@aptos-labs/wallet-standard";
+import { registerWallet } from '@aptos-labs/wallet-standard'
 
-const myWallet = new MyWallet();
-registerWallet(myWallet);
+const myWallet = new MyWallet()
+registerWallet(myWallet)
 ```
 
 See the full [example wallet implementation](./example/basic/wallet.ts) for a complete template with detailed guidance.
@@ -128,36 +128,36 @@ See the full [example wallet implementation](./example/basic/wallet.ts) for a co
 
 ### Interfaces
 
-| Interface | Description |
-| --- | --- |
-| `AptosWallet` | Main wallet interface extending `WalletWithAptosFeatures` with a `url` property |
-| `AptosWalletAccount` | Account interface extending `WalletAccount` with a `signingScheme` field |
-| `AccountInfo` | Serializable account info class with `address`, `publicKey`, and optional `ansName` |
-| `NetworkInfo` | Network details including `name`, `chainId`, and optional `url` |
+| Interface            | Description                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| `AptosWallet`        | Main wallet interface extending `WalletWithAptosFeatures` with a `url` property     |
+| `AptosWalletAccount` | Account interface extending `WalletAccount` with a `signingScheme` field            |
+| `AccountInfo`        | Serializable account info class with `address`, `publicKey`, and optional `ansName` |
+| `NetworkInfo`        | Network details including `name`, `chainId`, and optional `url`                     |
 
 ### Required Features
 
 All Aptos wallets must implement these features:
 
-| Feature | Description |
-| --- | --- |
-| `aptos:connect` | Connect a user's account to the dapp |
-| `aptos:disconnect` | Disconnect the account from the dapp |
-| `aptos:account` | Get the currently connected account info |
-| `aptos:network` | Get the current network the wallet is connected to |
-| `aptos:signTransaction` | Sign a transaction without submitting |
-| `aptos:signMessage` | Sign an arbitrary message |
-| `aptos:onAccountChange` | Listen for account change events |
-| `aptos:onNetworkChange` | Listen for network change events |
+| Feature                 | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `aptos:connect`         | Connect a user's account to the dapp               |
+| `aptos:disconnect`      | Disconnect the account from the dapp               |
+| `aptos:account`         | Get the currently connected account info           |
+| `aptos:network`         | Get the current network the wallet is connected to |
+| `aptos:signTransaction` | Sign a transaction without submitting              |
+| `aptos:signMessage`     | Sign an arbitrary message                          |
+| `aptos:onAccountChange` | Listen for account change events                   |
+| `aptos:onNetworkChange` | Listen for network change events                   |
 
 ### Optional Features
 
-| Feature | Description |
-| --- | --- |
+| Feature                          | Description                               |
+| -------------------------------- | ----------------------------------------- |
 | `aptos:signAndSubmitTransaction` | Sign and submit a transaction in one step |
-| `aptos:changeNetwork` | Request the wallet to switch networks |
-| `aptos:openInMobileApp` | Open the wallet's mobile app |
-| `aptos:signIn` | Sign in with the wallet |
+| `aptos:changeNetwork`            | Request the wallet to switch networks     |
+| `aptos:openInMobileApp`          | Open the wallet's mobile app              |
+| `aptos:signIn`                   | Sign in with the wallet                   |
 
 ### Chains
 
@@ -169,8 +169,8 @@ import {
   APTOS_TESTNET_CHAIN, // "aptos:testnet"
   APTOS_DEVNET_CHAIN, // "aptos:devnet"
   APTOS_LOCALNET_CHAIN, // "aptos:localnet"
-  APTOS_CHAINS, // All of the above
-} from "@aptos-labs/wallet-standard";
+  APTOS_CHAINS // All of the above
+} from '@aptos-labs/wallet-standard'
 ```
 
 ### Error Handling
@@ -178,10 +178,7 @@ import {
 The library provides structured errors via `AptosWalletError`:
 
 ```typescript
-import {
-  AptosWalletError,
-  AptosWalletErrorCode,
-} from "@aptos-labs/wallet-standard";
+import { AptosWalletError, AptosWalletErrorCode } from '@aptos-labs/wallet-standard'
 
 // Error codes:
 // 4100 - Unauthorized: method/account not authorized by the user
@@ -203,14 +200,14 @@ Methods that prompt the user for approval return a `UserResponse<T>`, a discrimi
 Other required features return their value directly (still asynchronously): `aptos:account` returns `Promise<AccountInfo>`, `aptos:network` returns `Promise<NetworkInfo>`, `aptos:disconnect` returns `Promise<void>`, and the `onAccountChange` / `onNetworkChange` features register subscriptions.
 
 ```typescript
-import { UserResponseStatus } from "@aptos-labs/wallet-standard";
+import { UserResponseStatus } from '@aptos-labs/wallet-standard'
 
-const response = await wallet.features["aptos:connect"].connect();
+const response = await wallet.features['aptos:connect'].connect()
 
 if (response.status === UserResponseStatus.APPROVED) {
-  console.log("Connected:", response.args); // AccountInfo
+  console.log('Connected:', response.args) // AccountInfo
 } else {
-  console.log("User rejected the connection");
+  console.log('User rejected the connection')
 }
 ```
 

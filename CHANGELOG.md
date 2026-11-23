@@ -4,7 +4,8 @@ All notable changes to the aptos-wallet-standard tool will be captured in this f
 
 # Unreleased
 
-- No changes yet.
+- Update development dependencies to their latest non-breaking releases, including Biome 2.6 and Vitest 5.1, and refresh transitive dependencies in `pnpm-lock.yaml`.
+- Migrate the Biome configuration to the 2.6 schema and reformat files with Biome 2.6.
 
 # 2.0.1 (2026-10-16)
 

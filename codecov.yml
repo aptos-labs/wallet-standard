@@ -14,13 +14,13 @@ coverage:
         informational: false
 
 comment:
-  layout: 'reach, diff, flags, files'
+  layout: "reach, diff, flags, files"
   behavior: default
   require_changes: false
 
 ignore:
-  - 'src/**/*.test.ts'
-  - 'src/index.ts'
-  - 'src/features/index.ts'
-  - 'dist'
-  - 'example'
+  - "src/**/*.test.ts"
+  - "src/index.ts"
+  - "src/features/index.ts"
+  - "dist"
+  - "example"
